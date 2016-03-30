@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="202d6c6eafcc433f87edab7fead45906" Name="Diagram1">
+        <EntityTypeShape EntityType="MVCProjectModel.Book" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCProjectModel.borrowBook" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCProjectModel.EmployeeType" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCProjectModel.Login" Width="1.5" PointX="6" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCProjectModel.Member" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCProjectModel.ReadingBook" Width="1.5" PointX="3" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCProjectModel.User" Width="1.5" PointX="3.75" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MVCProjectModel.WishList" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <AssociationConnector Association="MVCProjectModel.FK_borrowBook_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_ReadingBook_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_WishList_Book" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_borrowBook_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_Users_EmployeeType" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_Login_Member1" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_Login_User" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_ReadingBook_Member" ManuallyRouted="false" />
+        <AssociationConnector Association="MVCProjectModel.FK_WishList_Member" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
