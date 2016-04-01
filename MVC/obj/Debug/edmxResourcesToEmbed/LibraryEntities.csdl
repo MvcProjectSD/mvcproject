@@ -30,6 +30,8 @@
     <NavigationProperty Name="Book" Relationship="Self.FK_borrowBook_Book" FromRole="borrowBook" ToRole="Book" />
     <NavigationProperty Name="Member" Relationship="Self.FK_borrowBook_Member" FromRole="borrowBook" ToRole="Member" />
     <Property Name="ActualReturnDate" Type="DateTime" Precision="0" />
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="MVCProjectModel.FK_borrowBook_User" FromRole="borrowBook" ToRole="User" />
   </EntityType>
   <EntityType Name="EmployeeType">
     <Key>
@@ -81,6 +83,7 @@
     <Property Name="salary" Type="Double" />
     <NavigationProperty Name="EmployeeType1" Relationship="Self.FK_Users_EmployeeType" FromRole="User" ToRole="EmployeeType" />
     <NavigationProperty Name="Logins" Relationship="MVCProjectModel.FK_Login_User" FromRole="User" ToRole="Login" />
+    <NavigationProperty Name="borrowBooks" Relationship="MVCProjectModel.FK_borrowBook_User" FromRole="User" ToRole="borrowBook" />
   </EntityType>
   <EntityType Name="WishList">
     <Key>
@@ -221,6 +224,10 @@
       <End Role="User" EntitySet="Users" />
       <End Role="Login" EntitySet="Logins" />
     </AssociationSet>
+    <AssociationSet Name="FK_borrowBook_User" Association="MVCProjectModel.FK_borrowBook_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="borrowBook" EntitySet="borrowBooks" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="Login">
     <Key>
@@ -254,6 +261,18 @@
         <PropertyRef Name="User_ID" />
       </Principal>
       <Dependent Role="Login">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_borrowBook_User">
+    <End Type="MVCProjectModel.User" Role="User" Multiplicity="1" />
+    <End Type="MVCProjectModel.borrowBook" Role="borrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="borrowBook">
         <PropertyRef Name="User_ID" />
       </Dependent>
     </ReferentialConstraint>

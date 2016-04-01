@@ -25,6 +25,7 @@
     <Property Name="Borrow_date" Type="date" Nullable="false" />
     <Property Name="return_date" Type="date" Nullable="false" />
     <Property Name="ActualReturnDate" Type="date" />
+    <Property Name="User_ID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="EmployeeType">
     <Key>
@@ -47,7 +48,7 @@
     <Key>
       <PropertyRef Name="Member_ID" />
     </Key>
-    <Property Name="Member_ID" Type="int" Nullable="false" />
+    <Property Name="Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="FullName" Type="varchar(max)" Nullable="false" />
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" />
@@ -66,7 +67,7 @@
     <Key>
       <PropertyRef Name="User_ID" />
     </Key>
-    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="middlename" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
@@ -107,6 +108,18 @@
       </Principal>
       <Dependent Role="borrowBook">
         <PropertyRef Name="Member_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_borrowBook_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="borrowBook" Type="Self.borrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="borrowBook">
+        <PropertyRef Name="User_ID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -209,6 +222,10 @@
     </AssociationSet>
     <AssociationSet Name="FK_borrowBook_Member" Association="Self.FK_borrowBook_Member">
       <End Role="Member" EntitySet="Member" />
+      <End Role="borrowBook" EntitySet="borrowBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_borrowBook_User" Association="Self.FK_borrowBook_User">
+      <End Role="User" EntitySet="User" />
       <End Role="borrowBook" EntitySet="borrowBook" />
     </AssociationSet>
     <AssociationSet Name="FK_Login_Member" Association="Self.FK_Login_Member">
