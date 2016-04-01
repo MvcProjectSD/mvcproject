@@ -24,6 +24,7 @@
     <Property Name="Member_ID" Type="int" Nullable="false" />
     <Property Name="Borrow_date" Type="date" Nullable="false" />
     <Property Name="return_date" Type="date" Nullable="false" />
+    <Property Name="ActualReturnDate" Type="date" />
   </EntityType>
   <EntityType Name="EmployeeType">
     <Key>
@@ -38,7 +39,7 @@
     </Key>
     <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
-    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="User_ID" Type="int" />
     <Property Name="Login_No" Type="int" Nullable="false" />
   </EntityType>

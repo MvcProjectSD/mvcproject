@@ -29,6 +29,7 @@
     <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
     <NavigationProperty Name="Book" Relationship="Self.FK_borrowBook_Book" FromRole="borrowBook" ToRole="Book" />
     <NavigationProperty Name="Member" Relationship="Self.FK_borrowBook_Member" FromRole="borrowBook" ToRole="Member" />
+    <Property Name="ActualReturnDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="EmployeeType">
     <Key>
@@ -227,7 +228,7 @@
     </Key>
     <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="Int32" Nullable="false" />
     <Property Name="User_ID" Type="Int32" />
     <Property Name="Login_No" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Member" Relationship="MVCProjectModel.FK_Login_Member" FromRole="Login" ToRole="Member" />

@@ -330,7 +330,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\MainAdmin\Create.cshtml" />
+    <Content Include="Views\MainAdmin\CreateAdmin.cshtml" />
     <Content Include="Views\MainAdmin\Delete.cshtml" />
     <Content Include="Views\MainAdmin\Details.cshtml" />
     <Content Include="Views\MainAdmin\Edit.cshtml" />

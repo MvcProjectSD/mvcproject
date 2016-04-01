@@ -18,6 +18,7 @@ namespace MVC
         public User()
         {
             this.Logins = new HashSet<Login>();
+            this.borrowBooks = new HashSet<borrowBook>();
         }
     
         public int User_ID { get; set; }
@@ -35,5 +36,7 @@ namespace MVC
         public virtual EmployeeType EmployeeType1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Login> Logins { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<borrowBook> borrowBooks { get; set; }
     }
 }

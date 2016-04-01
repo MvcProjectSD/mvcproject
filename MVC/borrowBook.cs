@@ -20,8 +20,10 @@ namespace MVC
         public System.DateTime Borrow_date { get; set; }
         public System.DateTime return_date { get; set; }
         public Nullable<System.DateTime> ActualReturnDate { get; set; }
+        public int User_ID { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual Member Member { get; set; }
+        public virtual User User { get; set; }
     }
 }

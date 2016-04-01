@@ -52,3 +52,4 @@ E:\mvcproject\MVC\bin\Microsoft.Owin.Security.Twitter.xml
 E:\mvcproject\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\mvcproject\MVC\obj\Debug\MVC.dll
 E:\mvcproject\MVC\obj\Debug\MVC.pdb
+E:\mvcproject\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
