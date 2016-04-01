@@ -50,6 +50,5 @@ E:\mvcproject\MVC\bin\Microsoft.Owin.Security.OAuth.xml
 E:\mvcproject\MVC\bin\Microsoft.Owin.Security.Google.xml
 E:\mvcproject\MVC\bin\Microsoft.Owin.Security.Twitter.xml
 E:\mvcproject\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-E:\mvcproject\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
 E:\mvcproject\MVC\obj\Debug\MVC.dll
 E:\mvcproject\MVC\obj\Debug\MVC.pdb

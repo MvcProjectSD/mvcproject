@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MVCProjectModelStoreContainer" CdmEntityContainer="MVCProjectEntities">
+    <EntitySetMapping Name="Books">
+      <EntityTypeMapping TypeName="MVCProjectModel.Book">
+        <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="author" ColumnName="author" />
+          <ScalarProperty Name="publisher" ColumnName="publisher" />
+          <ScalarProperty Name="category" ColumnName="category" />
+          <ScalarProperty Name="edition" ColumnName="edition" />
+          <ScalarProperty Name="NoOfpages" ColumnName="NoOfpages" />
+          <ScalarProperty Name="NoOfCopies" ColumnName="NoOfCopies" />
+          <ScalarProperty Name="Available" ColumnName="Available" />
+          <ScalarProperty Name="shelfNo" ColumnName="shelfNo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="borrowBooks">
+      <EntityTypeMapping TypeName="MVCProjectModel.borrowBook">
+        <MappingFragment StoreEntitySet="borrowBook">
+          <ScalarProperty Name="Borrow_ID" ColumnName="Borrow_ID" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+          <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeTypes">
+      <EntityTypeMapping TypeName="MVCProjectModel.EmployeeType">
+        <MappingFragment StoreEntitySet="EmployeeType">
+          <ScalarProperty Name="EmployeeType_ID" ColumnName="EmployeeType_ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="MVCProjectModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReadingBooks">
+      <EntityTypeMapping TypeName="MVCProjectModel.ReadingBook">
+        <MappingFragment StoreEntitySet="ReadingBook">
+          <ScalarProperty Name="Reading_ID" ColumnName="Reading_ID" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+          <ScalarProperty Name="Reading" ColumnName="Reading" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MVCProjectModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="firstname" ColumnName="firstname" />
+          <ScalarProperty Name="middlename" ColumnName="middlename" />
+          <ScalarProperty Name="lastname" ColumnName="lastname" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="hiredate" ColumnName="hiredate" />
+          <ScalarProperty Name="birthdate" ColumnName="birthdate" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="phoneNo" ColumnName="phoneNo" />
+          <ScalarProperty Name="employeeType" ColumnName="employeeType" />
+          <ScalarProperty Name="salary" ColumnName="salary" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WishLists">
+      <EntityTypeMapping TypeName="MVCProjectModel.WishList">
+        <MappingFragment StoreEntitySet="WishList">
+          <ScalarProperty Name="Wish_ID" ColumnName="Wish_ID" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Logins">
+      <EntityTypeMapping TypeName="MVCProjectModel.Login">
+        <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="Login_No" ColumnName="Login_No" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

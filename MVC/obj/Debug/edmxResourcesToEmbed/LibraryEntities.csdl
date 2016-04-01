@@ -1,0 +1,260 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="Int32" Nullable="false" />
+    <Property Name="title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="category" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="edition" Type="Int32" />
+    <Property Name="NoOfpages" Type="Int32" />
+    <Property Name="NoOfCopies" Type="Int32" Nullable="false" />
+    <Property Name="Available" Type="Boolean" Nullable="false" />
+    <Property Name="shelfNo" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="borrowBooks" Relationship="Self.FK_borrowBook_Book" FromRole="Book" ToRole="borrowBook" />
+    <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBook_Book" FromRole="Book" ToRole="ReadingBook" />
+    <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Book" FromRole="Book" ToRole="WishList" />
+  </EntityType>
+  <EntityType Name="borrowBook">
+    <Key>
+      <PropertyRef Name="Borrow_ID" />
+    </Key>
+    <Property Name="Borrow_ID" Type="Int32" Nullable="false" />
+    <Property Name="Book_ID" Type="Int32" Nullable="false" />
+    <Property Name="Member_ID" Type="Int32" Nullable="false" />
+    <Property Name="Borrow_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="return_date" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_borrowBook_Book" FromRole="borrowBook" ToRole="Book" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_borrowBook_Member" FromRole="borrowBook" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="EmployeeType_ID" />
+    </Key>
+    <Property Name="EmployeeType_ID" Type="Int32" Nullable="false" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Users" Relationship="Self.FK_Users_EmployeeType" FromRole="EmployeeType" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Member_ID" />
+    </Key>
+    <Property Name="Member_ID" Type="Int32" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="borrowBooks" Relationship="Self.FK_borrowBook_Member" FromRole="Member" ToRole="borrowBook" />
+    <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBook_Member" FromRole="Member" ToRole="ReadingBook" />
+    <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Member" FromRole="Member" ToRole="WishList" />
+    <NavigationProperty Name="Logins" Relationship="MVCProjectModel.FK_Login_Member" FromRole="Member" ToRole="Login" />
+  </EntityType>
+  <EntityType Name="ReadingBook">
+    <Key>
+      <PropertyRef Name="Reading_ID" />
+    </Key>
+    <Property Name="Reading_ID" Type="Int32" Nullable="false" />
+    <Property Name="Book_ID" Type="Int32" Nullable="false" />
+    <Property Name="Member_ID" Type="Int32" Nullable="false" />
+    <Property Name="Reading" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_ReadingBook_Book" FromRole="ReadingBook" ToRole="Book" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_ReadingBook_Member" FromRole="ReadingBook" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="Int32" Nullable="false" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="middlename" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="hiredate" Type="DateTime" Precision="0" />
+    <Property Name="birthdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phoneNo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="employeeType" Type="Int32" Nullable="false" />
+    <Property Name="salary" Type="Double" />
+    <NavigationProperty Name="EmployeeType1" Relationship="Self.FK_Users_EmployeeType" FromRole="User" ToRole="EmployeeType" />
+    <NavigationProperty Name="Logins" Relationship="MVCProjectModel.FK_Login_User" FromRole="User" ToRole="Login" />
+  </EntityType>
+  <EntityType Name="WishList">
+    <Key>
+      <PropertyRef Name="Wish_ID" />
+    </Key>
+    <Property Name="Wish_ID" Type="Int32" Nullable="false" />
+    <Property Name="Book_ID" Type="Int32" Nullable="false" />
+    <Property Name="Member_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Book" Relationship="Self.FK_WishList_Book" FromRole="WishList" ToRole="Book" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_WishList_Member" FromRole="WishList" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_borrowBook_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="borrowBook" Type="Self.borrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="borrowBook">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadingBook_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="ReadingBook" Type="Self.ReadingBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="ReadingBook">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WishList_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="WishList">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_borrowBook_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="borrowBook" Type="Self.borrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="borrowBook">
+        <PropertyRef Name="Member_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="EmployeeType_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="employeeType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadingBook_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="ReadingBook" Type="Self.ReadingBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="ReadingBook">
+        <PropertyRef Name="Member_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WishList_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="WishList">
+        <PropertyRef Name="Member_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MVCProjectEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Books" EntityType="Self.Book" />
+    <EntitySet Name="borrowBooks" EntityType="Self.borrowBook" />
+    <EntitySet Name="EmployeeTypes" EntityType="Self.EmployeeType" />
+    <EntitySet Name="Members" EntityType="Self.Member" />
+    <EntitySet Name="ReadingBooks" EntityType="Self.ReadingBook" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="WishLists" EntityType="Self.WishList" />
+    <AssociationSet Name="FK_borrowBook_Book" Association="Self.FK_borrowBook_Book">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="borrowBook" EntitySet="borrowBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadingBook_Book" Association="Self.FK_ReadingBook_Book">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="ReadingBook" EntitySet="ReadingBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WishList_Book" Association="Self.FK_WishList_Book">
+      <End Role="Book" EntitySet="Books" />
+      <End Role="WishList" EntitySet="WishLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_borrowBook_Member" Association="Self.FK_borrowBook_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="borrowBook" EntitySet="borrowBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_EmployeeType" Association="Self.FK_Users_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeTypes" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadingBook_Member" Association="Self.FK_ReadingBook_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="ReadingBook" EntitySet="ReadingBooks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WishList_Member" Association="Self.FK_WishList_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="WishList" EntitySet="WishLists" />
+    </AssociationSet>
+    <EntitySet Name="Logins" EntityType="MVCProjectModel.Login" />
+    <AssociationSet Name="FK_Login_Member" Association="MVCProjectModel.FK_Login_Member">
+      <End Role="Member" EntitySet="Members" />
+      <End Role="Login" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_User" Association="MVCProjectModel.FK_Login_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Login" EntitySet="Logins" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="User_ID" Type="Int32" />
+    <Property Name="Login_No" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Member" Relationship="MVCProjectModel.FK_Login_Member" FromRole="Login" ToRole="Member" />
+    <NavigationProperty Name="User" Relationship="MVCProjectModel.FK_Login_User" FromRole="Login" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_Login_Member">
+    <End Type="MVCProjectModel.Member" Role="Member" Multiplicity="0..1" />
+    <End Type="MVCProjectModel.Login" Role="Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_User">
+    <End Type="MVCProjectModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="MVCProjectModel.Login" Role="Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

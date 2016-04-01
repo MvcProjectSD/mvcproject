@@ -19,6 +19,7 @@ namespace MVC
         public int Member_ID { get; set; }
         public System.DateTime Borrow_date { get; set; }
         public System.DateTime return_date { get; set; }
+        public Nullable<System.DateTime> ActualReturnDate { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual Member Member { get; set; }

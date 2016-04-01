@@ -1,0 +1,242 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Book">
+    <Key>
+      <PropertyRef Name="Book_ID" />
+    </Key>
+    <Property Name="Book_ID" Type="int" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="author" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="publisher" Type="nvarchar" MaxLength="50" />
+    <Property Name="category" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="edition" Type="int" />
+    <Property Name="NoOfpages" Type="int" />
+    <Property Name="NoOfCopies" Type="int" Nullable="false" />
+    <Property Name="Available" Type="bit" Nullable="false" />
+    <Property Name="shelfNo" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="borrowBook">
+    <Key>
+      <PropertyRef Name="Borrow_ID" />
+    </Key>
+    <Property Name="Borrow_ID" Type="int" Nullable="false" />
+    <Property Name="Book_ID" Type="int" Nullable="false" />
+    <Property Name="Member_ID" Type="int" Nullable="false" />
+    <Property Name="Borrow_date" Type="date" Nullable="false" />
+    <Property Name="return_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeType">
+    <Key>
+      <PropertyRef Name="EmployeeType_ID" />
+    </Key>
+    <Property Name="EmployeeType_ID" Type="int" Nullable="false" />
+    <Property Name="Type" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Login">
+    <Key>
+      <PropertyRef Name="UserName" />
+    </Key>
+    <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Type" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="User_ID" Type="int" />
+    <Property Name="Login_No" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Member_ID" />
+    </Key>
+    <Property Name="Member_ID" Type="int" Nullable="false" />
+    <Property Name="FullName" Type="varchar(max)" Nullable="false" />
+    <Property Name="Email" Type="varchar(max)" Nullable="false" />
+    <Property Name="Address" Type="varchar(max)" />
+    <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReadingBook">
+    <Key>
+      <PropertyRef Name="Reading_ID" />
+    </Key>
+    <Property Name="Reading_ID" Type="int" Nullable="false" />
+    <Property Name="Book_ID" Type="int" Nullable="false" />
+    <Property Name="Member_ID" Type="int" Nullable="false" />
+    <Property Name="Reading" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="User_ID" />
+    </Key>
+    <Property Name="User_ID" Type="int" Nullable="false" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="middlename" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="lastname" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Image" Type="image" />
+    <Property Name="hiredate" Type="date" />
+    <Property Name="birthdate" Type="date" Nullable="false" />
+    <Property Name="address" Type="varchar(max)" Nullable="false" />
+    <Property Name="phoneNo" Type="nvarchar" MaxLength="15" Nullable="false" />
+    <Property Name="employeeType" Type="int" Nullable="false" />
+    <Property Name="salary" Type="float" />
+  </EntityType>
+  <EntityType Name="WishList">
+    <Key>
+      <PropertyRef Name="Wish_ID" />
+    </Key>
+    <Property Name="Wish_ID" Type="int" Nullable="false" />
+    <Property Name="Book_ID" Type="int" Nullable="false" />
+    <Property Name="Member_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_borrowBook_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="borrowBook" Type="Self.borrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="borrowBook">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_borrowBook_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="borrowBook" Type="Self.borrowBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="borrowBook">
+        <PropertyRef Name="Member_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Login_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Login" Type="Self.Login" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="User_ID" />
+      </Principal>
+      <Dependent Role="Login">
+        <PropertyRef Name="User_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadingBook_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="ReadingBook" Type="Self.ReadingBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="ReadingBook">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReadingBook_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="ReadingBook" Type="Self.ReadingBook" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="ReadingBook">
+        <PropertyRef Name="Member_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Users_EmployeeType">
+    <End Role="EmployeeType" Type="Self.EmployeeType" Multiplicity="1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeType">
+        <PropertyRef Name="EmployeeType_ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="employeeType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WishList_Book">
+    <End Role="Book" Type="Self.Book" Multiplicity="1" />
+    <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Book">
+        <PropertyRef Name="Book_ID" />
+      </Principal>
+      <Dependent Role="WishList">
+        <PropertyRef Name="Book_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WishList_Member">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="WishList" Type="Self.WishList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Member_ID" />
+      </Principal>
+      <Dependent Role="WishList">
+        <PropertyRef Name="Member_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MVCProjectModelStoreContainer">
+    <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="borrowBook" EntityType="Self.borrowBook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeType" EntityType="Self.EmployeeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ReadingBook" EntityType="Self.ReadingBook" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WishList" EntityType="Self.WishList" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_borrowBook_Book" Association="Self.FK_borrowBook_Book">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="borrowBook" EntitySet="borrowBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_borrowBook_Member" Association="Self.FK_borrowBook_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="borrowBook" EntitySet="borrowBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_Member" Association="Self.FK_Login_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Login_User" Association="Self.FK_Login_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Login" EntitySet="Login" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadingBook_Book" Association="Self.FK_ReadingBook_Book">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="ReadingBook" EntitySet="ReadingBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReadingBook_Member" Association="Self.FK_ReadingBook_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="ReadingBook" EntitySet="ReadingBook" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Users_EmployeeType" Association="Self.FK_Users_EmployeeType">
+      <End Role="EmployeeType" EntitySet="EmployeeType" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WishList_Book" Association="Self.FK_WishList_Book">
+      <End Role="Book" EntitySet="Book" />
+      <End Role="WishList" EntitySet="WishList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WishList_Member" Association="Self.FK_WishList_Member">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="WishList" EntitySet="WishList" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

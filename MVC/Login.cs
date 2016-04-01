@@ -16,8 +16,7 @@ namespace MVC
     {
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Type { get; set; }
-        public Nullable<int> Member_ID { get; set; }
+        public int Type { get; set; }
         public Nullable<int> User_ID { get; set; }
         public int Login_No { get; set; }
     

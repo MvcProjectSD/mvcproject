@@ -28,10 +28,10 @@ namespace MVC
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<borrowBook> borrowBooks { get; set; }
         public virtual DbSet<EmployeeType> EmployeeTypes { get; set; }
-        public virtual DbSet<Login> Logins { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<ReadingBook> ReadingBooks { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WishList> WishLists { get; set; }
+        public virtual DbSet<Login> Logins { get; set; }
     }
 }
