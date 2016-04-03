@@ -171,6 +171,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainAdminController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="EmployeeType.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
@@ -342,6 +343,11 @@
     <Content Include="Views\MainAdmin\_Layout.cshtml" />
     <Content Include="Views\Login\SignIn.cshtml" />
     <Content Include="Views\Employee\profile.cshtml" />
+    <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Member\MemberHome.cshtml" />
+    <Content Include="Views\Member\MemberLayout.cshtml" />
+    <Content Include="Views\Member\UpdateProfile.cshtml" />
+    <Content Include="Views\Member\_ViewStart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
