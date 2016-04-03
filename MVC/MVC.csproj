@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -167,6 +168,8 @@
     <Compile Include="borrowBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainAdminController.cs" />
     <Compile Include="EmployeeType.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
@@ -337,9 +340,12 @@
     <Content Include="Views\MainAdmin\Index.cshtml" />
     <Content Include="Views\MainAdmin\_ViewStart.cshtml" />
     <Content Include="Views\MainAdmin\_Layout.cshtml" />
+    <Content Include="Views\Login\SignIn.cshtml" />
+    <Content Include="Views\Employee\profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ChangePassword\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

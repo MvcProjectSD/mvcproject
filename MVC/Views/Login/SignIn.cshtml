@@ -1,0 +1,46 @@
+﻿
+
+@model MVC.Login
+
+
+<h1>
+    Please Login to library System
+</h1>
+<br />
+
+@using (@Html.BeginForm("SignIn", "Login"))
+{
+    <table class="table-bordered  ">
+
+        <tr>
+            <td align="right"> UserName:</td>
+            <td align="left">@Html.TextBoxFor(m => m.UserName, new { @id = "txtuserid", @style = "width:300px;" })</td>
+        </tr>
+
+
+        <tr>
+            <td align="right">Password:</td>
+            <td align="left">@Html.PasswordFor(m => m.Password, new { @id = "txtpasword", @style = "width:300px;" }) </td>
+        </tr>
+
+        <br />
+        <tr>
+            <td align="center" colspan="2">
+                <input type="submit" value="Login" />
+            </td>
+        </tr>
+    </table>
+
+    if (ViewBag.Message == 1)
+    {
+        <script language="javascript">
+        alert("Successfull login.");
+        </script>
+    }
+    if (ViewBag.Message == 0)
+    {
+        <script language="javascript">
+        alert("Please provide correct username or password.");
+        </script>
+    }
+}
