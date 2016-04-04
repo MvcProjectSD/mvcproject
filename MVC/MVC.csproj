@@ -348,6 +348,8 @@
     <Content Include="Views\Member\UpdateProfile.cshtml" />
     <Content Include="Views\Member\_ViewStart.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Employee\EditProfile.cshtml" />
+    <Content Include="Views\Employee\Members.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,6 +8,8 @@ namespace MVC.Controllers
 {
     public class EmployeeController : Controller
     {
+        MVCProjectEntities EmployeeEntity = new MVCProjectEntities();
+
         // GET: Employee
         public ActionResult Index()
         {
@@ -16,14 +18,48 @@ namespace MVC.Controllers
 
         public ActionResult profile(int id)
         {
-            MVCProjectEntities objentity = new MVCProjectEntities();
 
 
-            User employee = objentity.Users.Find(id);
+            User employee = EmployeeEntity.Users.Find(id);
 
 
 
             return View(employee);
+        }
+
+        public ActionResult EditProfile(int id)
+        {
+
+
+            User employee = EmployeeEntity.Users.Find(id);
+
+
+
+            return View(employee);
+        }
+        [HttpPost]
+        public ActionResult EditProfile(User Emp)
+        {
+            var EditEmployee = (from data in EmployeeEntity.Users
+                                where data.User_ID == Emp.User_ID
+                                select data);
+            foreach (var e in EditEmployee)
+            {
+                e.firstname = Emp.firstname;
+                e.middlename = Emp.middlename;
+                e.lastname = Emp.lastname;
+                e.birthdate = Emp.birthdate;
+                e.address = Emp.address;
+                e.phoneNo = Emp.phoneNo;
+
+            }
+            EmployeeEntity.SaveChanges();
+            return RedirectToAction("profile", new { id = Emp.User_ID });
+        }
+        public ActionResult Members()
+        {
+
+            return View(EmployeeEntity.Members.ToList());
         }
     }
 }
