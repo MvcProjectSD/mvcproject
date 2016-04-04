@@ -1,8 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using MVC;
+using System.IO;
+
 
 namespace MVC.Controllers
 {
@@ -17,13 +23,16 @@ namespace MVC.Controllers
             var memberlogin = from item in DB.Members 
                               join item2 in DB.Logins
                               on  item.Member_ID equals item2.User_ID 
-                                  where item2.UserName == (String)Session["username"]
+                                  where item2.UserName == "Aya_19" && item2.Password=="8760"
                               select item;
             return View(memberlogin.ToList());
         }
         public ActionResult UpdateProfile()
         {
-            return View();
+            var updating = from x in DB.Members
+                           where x.Member_ID == 5
+                           select x;
+            return View(updating.FirstOrDefault());
         }
         public ActionResult MemberHome()
         {
