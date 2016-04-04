@@ -183,6 +183,7 @@
     <Compile Include="Member.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
     <Compile Include="ReadingBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
@@ -306,7 +307,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

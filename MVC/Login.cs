@@ -19,8 +19,6 @@ namespace MVC
         public int Type { get; set; }
         public Nullable<int> User_ID { get; set; }
         public int Login_No { get; set; }
-    
-        public virtual Member Member { get; set; }
-        public virtual User User { get; set; }
+        public Nullable<bool> status { get; set; }
     }
 }
