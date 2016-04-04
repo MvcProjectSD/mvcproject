@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Member>
+    <style>
+        #imag {
+            width : 900px;
+            height : auto; 
+            position :absolute;
+        }
+    </style>
+    <!--  @{
+          ViewBag.Title = "Index";
+          Layout = "~/Views/Member/MemberLayout.cshtml";
+      }-->
+    <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+        <tr>
+            <th> @Html.DisplayNameFor(x => x.FullName)</th>
+            <th> @Html.DisplayNameFor(x => x.Address)</th>
+            <th> @Html.DisplayNameFor(x => x.Email)</th>
+            <th> @Html.DisplayNameFor(x => x.PhoneNumber)</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td> @Html.DisplayFor(x => item.FullName)</td>
+                <td> @Html.DisplayFor(x => item.Email)</td>
+                <td> @Html.DisplayFor(x => item.Address)</td>
+                <td> @Html.DisplayFor(x => item.PhoneNumber)</td>
+            </tr>
+
+        }
+    </table>
+                      <img src="~/images/gallery5.jpg" id="imag"/>
+
