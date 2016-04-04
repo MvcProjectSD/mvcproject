@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Books">
       <EntityTypeMapping TypeName="MVCProjectModel.Book">
         <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="arrivedDate" ColumnName="arrivedDate" />
           <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="author" ColumnName="author" />
@@ -88,6 +89,7 @@
     <EntitySetMapping Name="Logins">
       <EntityTypeMapping TypeName="MVCProjectModel.Login">
         <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="Login_No" ColumnName="Login_No" />
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
           <ScalarProperty Name="Type" ColumnName="Type" />

@@ -9,5 +9,7 @@ namespace MVC.Models
     {
         public User user { get; set; }
         public Login login { get; set; }
+
+        public ImageToUpload image { get; set; }
     }
 }

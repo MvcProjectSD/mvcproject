@@ -1,13 +1,12 @@
 ﻿@model IEnumerable<User>
 
-@Html.ActionLink("Create New Admin", "CreateAdmin");
+@Html.ActionLink("Create New Admin", "CreateAdmin")
 
 <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
     <tr>
         <th>@Html.DisplayNameFor(p => p.firstname)</th>
         <th>@Html.DisplayNameFor(p => p.middlename)</th>
         <th>@Html.DisplayNameFor(p => p.lastname)</th>
-        <th>@Html.DisplayNameFor(p => p.Image)</th>
         <th>@Html.DisplayNameFor(p => p.hiredate)</th>
         <th>@Html.DisplayNameFor(p => p.birthdate)</th>
         <th>@Html.DisplayNameFor(p => p.address)</th>
@@ -23,7 +22,6 @@
             <td>@Html.DisplayFor(p => item.firstname)</td>
             <td>@Html.DisplayFor(p => item.middlename)</td>
             <td>@Html.DisplayFor(p => item.lastname)</td>
-            <td>@Html.DisplayFor(p => item.Image)</td>
             <td>@Html.DisplayFor(p => item.hiredate)</td>
             <td>@Html.DisplayFor(p => item.birthdate)</td>
             <td>@Html.DisplayFor(p => item.address)</td>

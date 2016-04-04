@@ -21,6 +21,7 @@ namespace MVC.Controllers
             var _objuserdetail = (from data in objentity.Logins
                                   where data.UserName == _objuserloginmodel.UserName
                                   && data.Password == _objuserloginmodel.Password
+                                  && data.status == true
                                   select data
                                   );
 

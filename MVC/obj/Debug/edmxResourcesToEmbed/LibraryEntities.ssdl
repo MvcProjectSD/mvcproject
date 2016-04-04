@@ -14,6 +14,7 @@
     <Property Name="NoOfCopies" Type="int" Nullable="false" />
     <Property Name="Available" Type="bit" Nullable="false" />
     <Property Name="shelfNo" Type="int" Nullable="false" />
+    <Property Name="arrivedDate" Type="date" />
   </EntityType>
   <EntityType Name="borrowBook">
     <Key>
@@ -43,12 +44,13 @@
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="User_ID" Type="int" />
     <Property Name="Login_No" Type="int" Nullable="false" />
+    <Property Name="status" Type="bit" />
   </EntityType>
   <EntityType Name="Member">
     <Key>
       <PropertyRef Name="Member_ID" />
     </Key>
-    <Property Name="Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Member_ID" Type="int" Nullable="false" />
     <Property Name="FullName" Type="varchar(max)" Nullable="false" />
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" />
@@ -119,30 +121,6 @@
         <PropertyRef Name="User_ID" />
       </Principal>
       <Dependent Role="borrowBook">
-        <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Login_Member">
-    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
-    <End Role="Login" Type="Self.Login" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Member">
-        <PropertyRef Name="Member_ID" />
-      </Principal>
-      <Dependent Role="Login">
-        <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Login_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Login" Type="Self.Login" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
-      </Principal>
-      <Dependent Role="Login">
         <PropertyRef Name="User_ID" />
       </Dependent>
     </ReferentialConstraint>
@@ -227,14 +205,6 @@
     <AssociationSet Name="FK_borrowBook_User" Association="Self.FK_borrowBook_User">
       <End Role="User" EntitySet="User" />
       <End Role="borrowBook" EntitySet="borrowBook" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Login_Member" Association="Self.FK_Login_Member">
-      <End Role="Member" EntitySet="Member" />
-      <End Role="Login" EntitySet="Login" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Login_User" Association="Self.FK_Login_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Login" EntitySet="Login" />
     </AssociationSet>
     <AssociationSet Name="FK_ReadingBook_Book" Association="Self.FK_ReadingBook_Book">
       <End Role="Book" EntitySet="Book" />
