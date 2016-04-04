@@ -61,5 +61,27 @@ namespace MVC.Controllers
 
             return View(EmployeeEntity.Members.ToList());
         }
+        
+        public ActionResult AllBooks(string name)
+        {
+            var _objuserdetail = (from data in EmployeeEntity.Books
+
+
+                                  select data
+                                  );
+            if (!string.IsNullOrEmpty(name))
+            {
+                
+              
+
+                return View(_objuserdetail.Where(b => b.category.ToLower().Contains(name)).ToList());
+
+            }
+            else
+            {
+                
+                return View(_objuserdetail.ToList());
+            }
+        }
     }
 }
