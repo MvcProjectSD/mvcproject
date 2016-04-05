@@ -61,7 +61,7 @@ namespace MVC.Controllers
 
             return View(EmployeeEntity.Members.ToList());
         }
-        
+
         public ActionResult AllBooks(string name)
         {
             var _objuserdetail = (from data in EmployeeEntity.Books
@@ -71,17 +71,45 @@ namespace MVC.Controllers
                                   );
             if (!string.IsNullOrEmpty(name))
             {
-                
-              
+
+
 
                 return View(_objuserdetail.Where(b => b.category.ToLower().Contains(name)).ToList());
 
             }
             else
             {
-                
+
                 return View(_objuserdetail.ToList());
             }
+        }
+
+        public ActionResult BooksByCatogure()
+        {
+            var _objuserdetail = (from data in EmployeeEntity.Books
+                                  group data by data.category
+                                  into g
+                                  select new
+                                  {
+
+
+                                  }
+                                   );
+
+
+            return View(EmployeeEntity.Books.ToList());
+        }
+        public ActionResult NewArrivedBooks()
+        {
+
+            DateTime pre = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
+            var _objuserdetail = (from data in EmployeeEntity.Books
+
+                                  where data.arrivedDate <= DateTime.Now & data.arrivedDate >=pre
+                                  select data
+                                  );
+            return View(_objuserdetail.ToList());
+
         }
     }
 }

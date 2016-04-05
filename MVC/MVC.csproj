@@ -354,6 +354,9 @@
     <Content Include="Views\Employee\EditProfile.cshtml" />
     <Content Include="Views\Employee\Members.cshtml" />
     <Content Include="Views\Employee\AllBooks.cshtml" />
+    <Content Include="Views\Employee\_ViewStart.cshtml" />
+    <Content Include="Views\Employee\_Layout.cshtml" />
+    <Content Include="Views\Employee\NewArrivedBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
