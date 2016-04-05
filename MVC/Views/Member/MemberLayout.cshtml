@@ -32,8 +32,8 @@
                 <div class='h_btm'>
                     <div class='cssmenu'>
                         <ul>
-                            <li class='active'><a href='~/Member/Index'><span>Home</span></a></li>
-                            <li><a href='~/Member/UpdateProfile'><span>Update Profile</span></a></li>
+                            <li class='active'>@Html.ActionLink("Home", "Index", new { id = 5 })</li>
+                            <li>@Html.ActionLink("UpdateProfile", "UpdateProfile", new { id = @ViewBag.Message })</li>
                             <li><a href='staff.html'><span>New Books</span></a></li>
                             <li class='has-sub'><a href='service.html'><span>Read Books</span></a></li>
                             <li class='last'><a href='contact.html'><span>Borrowed Books</span></a></li>

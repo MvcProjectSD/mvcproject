@@ -216,3 +216,4 @@ C:\Users\aya\Documents\mvcproject\MVC\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\aya\Documents\mvcproject\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\aya\Documents\mvcproject\MVC\obj\Debug\MVC.dll
 C:\Users\aya\Documents\mvcproject\MVC\obj\Debug\MVC.pdb
+C:\Users\aya\Documents\mvcproject\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache

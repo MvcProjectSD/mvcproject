@@ -79,7 +79,7 @@ namespace MVC.Controllers
 
                             foreach (var n in MemberID)
                             {
-                                return RedirectToAction("profile", "Employee", new { id = n.User_ID });
+                                return RedirectToAction("Index", "Member", new { id = n.User_ID });
                             }
                             break;
 
