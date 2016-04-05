@@ -124,6 +124,114 @@ namespace MVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult AllBooks ()
+        {
+            return View(db.Books.ToList());
+        }
+
+        public ActionResult AllPublishers ()
+        {
+            
+            var result = from B in db.Books
+                         select B.publisher;
+
+                         
+            return View(result.ToList().Distinct());
+
+        }
+
+        public ActionResult AllAuthors()
+        {
+
+            var result = from B in db.Books
+                         select B.author;
+
+
+            return View(result.ToList().Distinct());
+
+        }
+
+        public ActionResult Search ()
+        {
+            return View();
+        }
+
+        public ActionResult availablebooks (string search)
+        {
+            if (search == null || search == string.Empty)
+            {
+                var result = from B in db.Books
+                             where B.Available == true
+                             select B;
+
+                return View(result.ToList());
+            }
+            else
+            {
+                var result = from B in db.Books
+                             where B.Available == true & B.category.ToLower() == search.ToLower()
+                             select B;
+
+                return View(result.ToList());
+            }
+        }
+
+        public ActionResult borrowedBooks ()
+        {
+            var result = from B in db.borrowBooks
+                         select B;
+
+            return View(result.ToList());
+        }
+
+        public ActionResult NewArrivedBooks(string search)
+        {
+            DateTime pre = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
+
+            if (search == null || search == string.Empty)
+            {
+
+                var result = from B in db.Books
+                             where B.arrivedDate >= pre & B.arrivedDate <= DateTime.Now
+                             select B;
+                return View(result.ToList());
+            }
+            else
+            {
+                var result = from B in db.Books
+                             where B.arrivedDate >= pre & B.arrivedDate <= DateTime.Now & B.category.ToLower() == search.ToLower()
+                             select B;
+                return View(result.ToList());
+            }
+        }
+
+        public ActionResult mostborrowedbooks( string year)
+        {
+            if(year == null || year == string.Empty)
+            {
+                return View();
+            }
+            else
+            {
+                return View();
+
+            }
+        }
+
+        public ActionResult mostreadingbooks(string year)
+        {
+            if (year == null || year == string.Empty)
+            {
+                return View();
+               
+            }
+            else
+            {
+                return View();
+                
+            }
+        }
         
     }
 }

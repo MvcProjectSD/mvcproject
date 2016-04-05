@@ -1,0 +1,39 @@
+﻿@model IEnumerable<borrowBook>
+@{
+    ViewBag.Title = "borrowedBooks";
+}
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>@Html.ActionLink("available books", "availablebooks")</th>
+        <th>@Html.ActionLink("borrowed books", "borrowedBooks")</th>
+        <th>@Html.ActionLink("New Arrived Books", "NewArrivedBooks")</th>
+        <th>@Html.ActionLink("most borrowed books ", "mostborrowedbooks")</th>
+        <th>@Html.ActionLink("most reading books", "mostreadingbooks")</th>
+
+    </tr>
+</table>
+
+<h2>borrowedBooks</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>@Html.DisplayNameFor(p => p.Book_ID)</th>
+        <th>@Html.DisplayNameFor(p => p.Member_ID)</th>
+        <th>@Html.DisplayNameFor(p => p.Borrow_date)</th>
+        <th>@Html.DisplayNameFor(p => p.return_date)</th>
+        <th>@Html.DisplayNameFor(p => p.ActualReturnDate)</th>
+        <th>@Html.DisplayNameFor(p => p.User_ID)</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(p => item.Book_ID)</td>
+            <td>@Html.DisplayFor(p => item.Member_ID)</td>
+            <td>@Html.DisplayFor(p => item.Borrow_date)</td>
+            <td>@Html.DisplayFor(p => item.return_date)</td>
+            <td>@Html.DisplayFor(p => item.ActualReturnDate)</td>
+        </tr>
+    }
+</table>
