@@ -19,6 +19,7 @@
           <Property Name="NoOfCopies" Type="int" Nullable="false" />
           <Property Name="Available" Type="bit" Nullable="false" />
           <Property Name="shelfNo" Type="int" Nullable="false" />
+          <Property Name="arrivedDate" Type="date" />
         </EntityType>
         <EntityType Name="borrowBook">
           <Key>
@@ -48,12 +49,13 @@
           <Property Name="Type" Type="int" Nullable="false" />
           <Property Name="User_ID" Type="int" />
           <Property Name="Login_No" Type="int" Nullable="false" />
+          <Property Name="status" Type="bit" />
         </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="Member_ID" />
           </Key>
-          <Property Name="Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Member_ID" Type="int" Nullable="false" />
           <Property Name="FullName" Type="varchar(max)" Nullable="false" />
           <Property Name="Email" Type="varchar(max)" Nullable="false" />
           <Property Name="Address" Type="varchar(max)" />
@@ -124,30 +126,6 @@
               <PropertyRef Name="User_ID" />
             </Principal>
             <Dependent Role="borrowBook">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Login_Member">
-          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
-          <End Role="Login" Type="Self.Login" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="Member_ID" />
-            </Principal>
-            <Dependent Role="Login">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Login_User">
-          <End Role="User" Type="Self.User" Multiplicity="0..1" />
-          <End Role="Login" Type="Self.Login" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="Login">
               <PropertyRef Name="User_ID" />
             </Dependent>
           </ReferentialConstraint>
@@ -233,14 +211,6 @@
             <End Role="User" EntitySet="User" />
             <End Role="borrowBook" EntitySet="borrowBook" />
           </AssociationSet>
-          <AssociationSet Name="FK_Login_Member" Association="Self.FK_Login_Member">
-            <End Role="Member" EntitySet="Member" />
-            <End Role="Login" EntitySet="Login" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Login_User" Association="Self.FK_Login_User">
-            <End Role="User" EntitySet="User" />
-            <End Role="Login" EntitySet="Login" />
-          </AssociationSet>
           <AssociationSet Name="FK_ReadingBook_Book" Association="Self.FK_ReadingBook_Book">
             <End Role="Book" EntitySet="Book" />
             <End Role="ReadingBook" EntitySet="ReadingBook" />
@@ -283,6 +253,7 @@
           <NavigationProperty Name="borrowBooks" Relationship="Self.FK_borrowBook_Book" FromRole="Book" ToRole="borrowBook" />
           <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBook_Book" FromRole="Book" ToRole="ReadingBook" />
           <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Book" FromRole="Book" ToRole="WishList" />
+          <Property Name="arrivedDate" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="borrowBook">
           <Key>
@@ -319,7 +290,6 @@
           <NavigationProperty Name="borrowBooks" Relationship="Self.FK_borrowBook_Member" FromRole="Member" ToRole="borrowBook" />
           <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBook_Member" FromRole="Member" ToRole="ReadingBook" />
           <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Member" FromRole="Member" ToRole="WishList" />
-          <NavigationProperty Name="Logins" Relationship="MVCProjectModel.FK_Login_Member" FromRole="Member" ToRole="Login" />
         </EntityType>
         <EntityType Name="ReadingBook">
           <Key>
@@ -348,7 +318,6 @@
           <Property Name="employeeType" Type="Int32" Nullable="false" />
           <Property Name="salary" Type="Double" />
           <NavigationProperty Name="EmployeeType1" Relationship="Self.FK_Users_EmployeeType" FromRole="User" ToRole="EmployeeType" />
-          <NavigationProperty Name="Logins" Relationship="MVCProjectModel.FK_Login_User" FromRole="User" ToRole="Login" />
           <NavigationProperty Name="borrowBooks" Relationship="MVCProjectModel.FK_borrowBook_User" FromRole="User" ToRole="borrowBook" />
         </EntityType>
         <EntityType Name="WishList">
@@ -482,14 +451,6 @@
             <End Role="WishList" EntitySet="WishLists" />
           </AssociationSet>
           <EntitySet Name="Logins" EntityType="MVCProjectModel.Login" />
-          <AssociationSet Name="FK_Login_Member" Association="MVCProjectModel.FK_Login_Member">
-            <End Role="Member" EntitySet="Members" />
-            <End Role="Login" EntitySet="Logins" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Login_User" Association="MVCProjectModel.FK_Login_User">
-            <End Role="User" EntitySet="Users" />
-            <End Role="Login" EntitySet="Logins" />
-          </AssociationSet>
           <AssociationSet Name="FK_borrowBook_User" Association="MVCProjectModel.FK_borrowBook_User">
             <End Role="User" EntitySet="Users" />
             <End Role="borrowBook" EntitySet="borrowBooks" />
@@ -504,33 +465,8 @@
           <Property Name="Type" Type="Int32" Nullable="false" />
           <Property Name="User_ID" Type="Int32" />
           <Property Name="Login_No" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Member" Relationship="MVCProjectModel.FK_Login_Member" FromRole="Login" ToRole="Member" />
-          <NavigationProperty Name="User" Relationship="MVCProjectModel.FK_Login_User" FromRole="Login" ToRole="User" />
+          <Property Name="status" Type="Boolean" />
         </EntityType>
-        <Association Name="FK_Login_Member">
-          <End Type="MVCProjectModel.Member" Role="Member" Multiplicity="0..1" />
-          <End Type="MVCProjectModel.Login" Role="Login" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Member">
-              <PropertyRef Name="Member_ID" />
-            </Principal>
-            <Dependent Role="Login">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Login_User">
-          <End Type="MVCProjectModel.User" Role="User" Multiplicity="0..1" />
-          <End Type="MVCProjectModel.Login" Role="Login" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="User">
-              <PropertyRef Name="User_ID" />
-            </Principal>
-            <Dependent Role="Login">
-              <PropertyRef Name="User_ID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_borrowBook_User">
           <End Type="MVCProjectModel.User" Role="User" Multiplicity="1" />
           <End Type="MVCProjectModel.borrowBook" Role="borrowBook" Multiplicity="*" />
@@ -552,6 +488,7 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="MVCProjectModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="arrivedDate" ColumnName="arrivedDate" />
                 <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
                 <ScalarProperty Name="title" ColumnName="title" />
                 <ScalarProperty Name="author" ColumnName="author" />
@@ -636,6 +573,7 @@
           <EntitySetMapping Name="Logins">
             <EntityTypeMapping TypeName="MVCProjectModel.Login">
               <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="Login_No" ColumnName="Login_No" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

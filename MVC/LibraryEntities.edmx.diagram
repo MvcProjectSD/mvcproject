@@ -20,8 +20,6 @@
         <AssociationConnector Association="MVCProjectModel.FK_ReadingBook_Member" ManuallyRouted="false" />
         <AssociationConnector Association="MVCProjectModel.FK_WishList_Member" ManuallyRouted="false" />
         <EntityTypeShape EntityType="MVCProjectModel.Login" Width="1.5" PointX="6" PointY="9.5" />
-        <AssociationConnector Association="MVCProjectModel.FK_Login_Member" />
-        <AssociationConnector Association="MVCProjectModel.FK_Login_User" />
         <AssociationConnector Association="MVCProjectModel.FK_borrowBook_User" />
         </Diagram>
     </edmx:Diagrams>

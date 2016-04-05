@@ -183,6 +183,7 @@
     <Compile Include="Member.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
     <Compile Include="ReadingBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
@@ -306,7 +307,9 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -336,7 +339,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\MainAdmin\CreateAdmin.cshtml" />
     <Content Include="Views\MainAdmin\Delete.cshtml" />
-    <Content Include="Views\MainAdmin\Details.cshtml" />
     <Content Include="Views\MainAdmin\Edit.cshtml" />
     <Content Include="Views\MainAdmin\Index.cshtml" />
     <Content Include="Views\MainAdmin\_ViewStart.cshtml" />
@@ -348,6 +350,18 @@
     <Content Include="Views\Member\UpdateProfile.cshtml" />
     <Content Include="Views\Member\_ViewStart.cshtml" />
     <Content Include="Views\Member\Index.cshtml" />
+    <Content Include="Views\Employee\EditProfile.cshtml" />
+    <Content Include="Views\Employee\Members.cshtml" />
+    <Content Include="Views\Employee\AllBooks.cshtml" />
+    <Content Include="Views\MainAdmin\AllBooks.cshtml" />
+    <Content Include="Views\MainAdmin\AllPublishers.cshtml" />
+    <Content Include="Views\MainAdmin\AllAuthors.cshtml" />
+    <Content Include="Views\MainAdmin\Search.cshtml" />
+    <Content Include="Views\MainAdmin\availablebooks.cshtml" />
+    <Content Include="Views\MainAdmin\borrowedBooks.cshtml" />
+    <Content Include="Views\MainAdmin\NewArrivedBooks.cshtml" />
+    <Content Include="Views\MainAdmin\mostborrowedbooks.cshtml" />
+    <Content Include="Views\MainAdmin\mostreadingbooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

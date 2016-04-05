@@ -1,0 +1,79 @@
+﻿@model MVC.User
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit your profile</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.User_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.firstname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.firstname)
+                @Html.ValidationMessageFor(model => model.firstname)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.middlename, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.middlename)
+                @Html.ValidationMessageFor(model => model.middlename)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.lastname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.lastname)
+                @Html.ValidationMessageFor(model => model.lastname)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.birthdate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.birthdate)
+                @Html.ValidationMessageFor(model => model.birthdate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address)
+                @Html.ValidationMessageFor(model => model.address)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.phoneNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phoneNo)
+                @Html.ValidationMessageFor(model => model.phoneNo)
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+
+
+}
+
+<div>
+    @Html.ActionLink("Cancle", "profile", new { id = @Model.User_ID })
+</div>
+
+
+
+
