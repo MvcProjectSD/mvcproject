@@ -27,7 +27,8 @@ namespace MVC.Controllers
 
             if (_objuserdetail.Count() > 0)
             {
-                objentity.Logins.FirstOrDefault(U => U.UserName == _objuserloginmodel.UserName).Login_No = _objuserloginmodel.Login_No + 1;
+                objentity.Logins.FirstOrDefault(U => U.UserName == _objuserloginmodel.UserName).Login_No = 
+                    objentity.Logins.Where(l => l.UserName == _objuserloginmodel.UserName).Select(L=> L.Login_No).FirstOrDefault() + 1;
 
                 objentity.SaveChanges();
 
