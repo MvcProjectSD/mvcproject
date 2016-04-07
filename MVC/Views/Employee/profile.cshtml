@@ -38,16 +38,17 @@
 
 </table>
 
-<td>@Html.ActionLink("Members", "Members")</td>
-<td>@Html.ActionLink("EditProfile", "EditProfile", new { id = @Model.User_ID })</td>
-<td>@Html.ActionLink("ALL Books", "ALLBooks")</td>
-
-
-
-
-
-@Html.ActionLink("AllBooks", "AllBooks")
+@Html.ActionLink("ALL Members", "Members")
+<br />
+@Html.ActionLink("Edit Profile", "EditProfile", new { id = @Model.User_ID })
+<br />
+@Html.ActionLink("ALL Books", "ALLBooks")
 <br />
 
-@Html.ActionLink("NewArrivedBooks", "NewArrivedBooks")
+
+@Html.ActionLink("New Arrived Books", "NewArrivedBooks")
+<br />
+@Html.ActionLink("Reading Books", "ReadingBooks")
+
+
 

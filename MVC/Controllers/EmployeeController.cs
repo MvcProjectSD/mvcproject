@@ -11,7 +11,7 @@ namespace MVC.Controllers
     public class EmployeeController : Controller
     {
         MVCProjectEntities EmployeeEntity = new MVCProjectEntities();
-       
+
         // GET: Employee
         public ActionResult Index()
         {
@@ -58,10 +58,10 @@ namespace MVC.Controllers
             EmployeeEntity.SaveChanges();
             return RedirectToAction("profile", new { id = Emp.User_ID });
         }
-        
-        
+
+
         //Member
-        public ActionResult Members(string name,string typeOfSearch)
+        public ActionResult Members(string name, string typeOfSearch)
         {
             List<SelectListItem> li = new List<SelectListItem>();
             li.Add(new SelectListItem { Text = "Search by", Value = "0" });
@@ -84,7 +84,7 @@ namespace MVC.Controllers
             else
             {
                 return View(EmployeeEntity.Members.ToList());
-                
+
                 //return View(_objMemberdetail.ToList());
             }
         }
@@ -119,7 +119,7 @@ namespace MVC.Controllers
             return View(member);
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditMember([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
@@ -157,22 +157,23 @@ namespace MVC.Controllers
             return RedirectToAction("Members");
         }
 
-    
+
         //Books
-        public ActionResult AllBooks(string name) 
-        { 
+        public ActionResult AllBooks(string name)
+        {
             var _objuserdetail = (from data in EmployeeEntity.Books select data);
             if (!string.IsNullOrEmpty(name))
             {
                 return View(_objuserdetail.Where(b => b.category.ToLower().Contains(name)).ToList());
-            } else
+            }
+            else
             {
-                return View(_objuserdetail.ToList()); 
+                return View(_objuserdetail.ToList());
             }
         }
         public ActionResult TodayReturnBook()
         {
-            var today = EmployeeEntity.todayReturnedBook1(); 
+            var today = EmployeeEntity.todayReturnedBook1();
             return View(today.ToList());
         }
         public ActionResult LateReturnBook()
@@ -181,30 +182,58 @@ namespace MVC.Controllers
                                   where data.return_date < data.ActualReturnDate
                                   select data);
 
-            return View(_objuserdetail.ToList()); 
+            return View(_objuserdetail.ToList());
 
         }
+        [HttpGet]
+        public ActionResult ReadingBooks()
+        {
+            return View();
 
-       //     //var _objuserdetail = (from data in EmployeeEntity.borrowBooks
-       //     //                      where data.ActualReturnDate.Value == DateTime.Now.Date
-                                  
-       //     //                      select data);
+        }
+        [HttpPost]
+        public ActionResult ReadingBooks(ReadingBook read)
+        {
+            EmployeeEntity.ReadingBooks.Add(read);
+            EmployeeEntity.SaveChanges();
 
-       //     //return View(_objuserdetail.ToList()); 
+            return RedirectToAction("Details");
 
+        }
+        [HttpGet]
+        public ActionResult Details()
+        {
 
-       //     return View(todayReturnedBook_Result);
+            var _objuserdetail = (from data in EmployeeEntity.ReadingBooks select data);
+            return View(_objuserdetail.ToList());
+        }
 
-       //     //var today = from data in EmployeeEntity.borrowBooks
-                        
-       //     //            where data.return_date==DateTime.Now 
-       //     //            & data.Book_ID==data.Book.Book_ID
-       //     //            select data;
-           
-       // }
-       ////var late = from data in EmployeeEntity.borrowBooks
-       ////           where data.ActualReturnDate < data.return_date
-       ////           select data;
+        public ActionResult DeleteReadingBook(int Id)
+        {
+            
+            EmployeeEntity.ReadingBooks.Remove(EmployeeEntity.ReadingBooks.Find(Id));
+            EmployeeEntity.SaveChanges();
+            return RedirectToAction("Details");
+
+        }
+        [HttpGet]
+        public ActionResult EditReadingBook(int Id)
+        {
+
+          ReadingBook read=EmployeeEntity.ReadingBooks.Find(Id);
+           return View(read);
+
+        }
+        [HttpPost]
+        public ActionResult EditReadingBook(ReadingBook read)
+        {
+
+            EmployeeEntity.ReadingBooks.Remove(EmployeeEntity.ReadingBooks.Find(read.Reading_ID));
+            EmployeeEntity.ReadingBooks.Add(read);
+            EmployeeEntity.SaveChanges();
+            return RedirectToAction("Details");
+
+        }
 
     }
 }

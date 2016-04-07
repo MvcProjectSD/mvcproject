@@ -183,6 +183,7 @@
     <Compile Include="Member.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
     <Compile Include="ReadingBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
@@ -362,6 +363,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Employee\TodayReturnBook.cshtml" />
     <Content Include="Views\Employee\LateReturnBook.cshtml" />
+    <Content Include="Views\Employee\ReadingBooks.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\EditReadingBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

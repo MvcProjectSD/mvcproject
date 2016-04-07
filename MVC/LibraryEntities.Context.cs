@@ -36,6 +36,11 @@ namespace MVC
         public virtual DbSet<WishList> WishLists { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
     
+        public virtual ObjectResult<todayReturnedBook_Result> todayReturnedBook()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<todayReturnedBook_Result>("todayReturnedBook");
+        }
+    
         public virtual ObjectResult<todayReturnedBook1_Result> todayReturnedBook1()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<todayReturnedBook1_Result>("todayReturnedBook1");
