@@ -20,6 +20,7 @@ namespace MVC
             this.borrowBooks = new HashSet<borrowBook>();
             this.ReadingBooks = new HashSet<ReadingBook>();
             this.WishLists = new HashSet<WishList>();
+            this.Logins = new HashSet<Login>();
         }
     
         public int Member_ID { get; set; }
@@ -34,5 +35,7 @@ namespace MVC
         public virtual ICollection<ReadingBook> ReadingBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WishList> WishLists { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Login> Logins { get; set; }
     }
 }

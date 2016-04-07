@@ -10,18 +10,16 @@
 namespace MVC
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Login
+    public partial class todayReturnedBook_Result
     {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public int Type { get; set; }
-        public Nullable<int> User_ID { get; set; }
-        public int Login_No { get; set; }
-        public Nullable<bool> status { get; set; }
-    
-        public virtual Member Member { get; set; }
-        public virtual User User { get; set; }
+        public int Borrow_ID { get; set; }
+        public int Book_ID { get; set; }
+        public int Member_ID { get; set; }
+        public System.DateTime Borrow_date { get; set; }
+        public System.DateTime return_date { get; set; }
+        public Nullable<System.DateTime> ActualReturnDate { get; set; }
+        public int User_ID { get; set; }
+        public string title { get; set; }
     }
 }

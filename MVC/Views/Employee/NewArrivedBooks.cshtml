@@ -1,15 +1,13 @@
 ﻿@model IEnumerable<MVC.Book>
 
 @{
-    ViewBag.Title = "All Books";
+    ViewBag.Title = "Index";
 }
 
-<h2>All Books</h2>
-<form method="POST" action="">
-     <input type="text" name="name" />
-     <input type="submit" value="Search" /> 
+<h2> ALL New  Books </h2>
 
-</form>
+
+
 
 
 <table class="table">
@@ -43,13 +41,11 @@
         </th>
         <th></th>
     </tr>
- 
 
     @foreach (var item in Model)
     {
         <tr>
             <td>
-                
                 @Html.DisplayFor(modelItem => item.title)
             </td>
             <td>
@@ -65,8 +61,7 @@
                 @Html.DisplayFor(modelItem => item.edition)
             </td>
             <td>
-  
-                  @Html.DisplayFor(modelItem => item.NoOfpages)
+                @Html.DisplayFor(modelItem => item.NoOfpages)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NoOfCopies)
@@ -77,10 +72,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.shelfNo)
             </td>
-        
+
         </tr>
     }
 
 </table>
-@Html.ActionLink("Show today returned Book ", "TodayReturnBook") 
-@Html.ActionLink("Show late returned Book ", "LateReturnBook") 
