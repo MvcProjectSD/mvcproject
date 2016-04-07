@@ -199,6 +199,7 @@
         <Function Name="most_reading_books_by_year" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="year" Type="int" Mode="In" />
         </Function>
+        <Function Name="todayReturnedBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="MVCProjectModelStoreContainer">
           <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="borrowBook" EntityType="Self.borrowBook" Schema="dbo" store:Type="Tables" />
@@ -467,12 +468,13 @@
           </AssociationSet>
           <FunctionImport Name="most_borrowed_books" ReturnType="Collection(String)" />
           <FunctionImport Name="most_borrowed_books_by_year" ReturnType="Collection(String)">
-            <Parameter Name="year" Mode="In" Type="Int32" />
+          <Parameter Name="year" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="most_reading_books" ReturnType="Collection(String)" />
           <FunctionImport Name="most_reading_books_by_year" ReturnType="Collection(String)">
-            <Parameter Name="year" Mode="In" Type="Int32" />
+          <Parameter Name="year" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="todayReturnedBook" ReturnType="Collection(MVCProjectModel.todayReturnedBook_Result)" />
           </EntityContainer>
         <EntityType Name="Login">
           <Key>
@@ -497,6 +499,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="todayReturnedBook_Result">
+          <Property Type="Int32" Name="Borrow_ID" Nullable="false" />
+          <Property Type="Int32" Name="Book_ID" Nullable="false" />
+          <Property Type="Int32" Name="Member_ID" Nullable="false" />
+          <Property Type="DateTime" Name="Borrow_date" Nullable="false" />
+          <Property Type="DateTime" Name="return_date" Nullable="false" />
+          <Property Type="DateTime" Name="ActualReturnDate" Nullable="true" />
+          <Property Type="Int32" Name="User_ID" Nullable="false" />
+          <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="FullName" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -605,6 +618,21 @@
           <FunctionImportMapping FunctionImportName="most_borrowed_books_by_year" FunctionName="MVCProjectModel.Store.most_borrowed_books_by_year" />
           <FunctionImportMapping FunctionImportName="most_reading_books" FunctionName="MVCProjectModel.Store.most_reading_books" />
           <FunctionImportMapping FunctionImportName="most_reading_books_by_year" FunctionName="MVCProjectModel.Store.most_reading_books_by_year" />
+          <FunctionImportMapping FunctionImportName="todayReturnedBook" FunctionName="MVCProjectModel.Store.todayReturnedBook">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MVCProjectModel.todayReturnedBook_Result">
+                <ScalarProperty Name="Borrow_ID" ColumnName="Borrow_ID" />
+                <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+                <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+                <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+                <ScalarProperty Name="return_date" ColumnName="return_date" />
+                <ScalarProperty Name="ActualReturnDate" ColumnName="ActualReturnDate" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

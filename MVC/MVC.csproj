@@ -188,9 +188,6 @@
     <Compile Include="ReadingBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="todayReturnedBook1_Result.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="todayReturnedBook_Result.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
@@ -339,7 +336,6 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\MainAdmin\CreateAdmin.cshtml" />
     <Content Include="Views\MainAdmin\Delete.cshtml" />
-    <Content Include="Views\MainAdmin\Details.cshtml" />
     <Content Include="Views\MainAdmin\Edit.cshtml" />
     <Content Include="Views\MainAdmin\Index.cshtml" />
     <Content Include="Views\MainAdmin\_ViewStart.cshtml" />
@@ -366,6 +362,16 @@
     <Content Include="Views\Employee\ReadingBooks.cshtml" />
     <Content Include="Views\Employee\Details.cshtml" />
     <Content Include="Views\Employee\EditReadingBook.cshtml" />
+    <Content Include="Views\MainAdmin\AllAuthors.cshtml" />
+    <Content Include="Views\MainAdmin\AllBooks.cshtml" />
+    <Content Include="Views\MainAdmin\AllPublishers.cshtml" />
+    <Content Include="Views\MainAdmin\availablebooks.cshtml" />
+    <Content Include="Views\MainAdmin\borrowedBooks.cshtml" />
+    <Content Include="Views\MainAdmin\mostborrowedbooks.cshtml" />
+    <Content Include="Views\MainAdmin\mostreadingbooks.cshtml" />
+    <Content Include="Views\MainAdmin\NewArrivedBooks.cshtml" />
+    <Content Include="Views\MainAdmin\Search.cshtml" />
+    <Content Include="Views\MainAdmin\profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

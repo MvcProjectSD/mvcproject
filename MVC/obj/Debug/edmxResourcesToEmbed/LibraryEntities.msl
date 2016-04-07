@@ -103,5 +103,20 @@
     <FunctionImportMapping FunctionImportName="most_borrowed_books_by_year" FunctionName="MVCProjectModel.Store.most_borrowed_books_by_year" />
     <FunctionImportMapping FunctionImportName="most_reading_books" FunctionName="MVCProjectModel.Store.most_reading_books" />
     <FunctionImportMapping FunctionImportName="most_reading_books_by_year" FunctionName="MVCProjectModel.Store.most_reading_books_by_year" />
+    <FunctionImportMapping FunctionImportName="todayReturnedBook" FunctionName="MVCProjectModel.Store.todayReturnedBook">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.todayReturnedBook_Result">
+          <ScalarProperty Name="Borrow_ID" ColumnName="Borrow_ID" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+          <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="ActualReturnDate" ColumnName="ActualReturnDate" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

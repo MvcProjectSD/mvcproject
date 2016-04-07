@@ -18,6 +18,11 @@ namespace MVC.Controllers
         // GET: MainAdmin
         public ActionResult Index()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             var users = from U in db.Users
                         where U.employeeType == 2
                         select  U;
@@ -26,11 +31,16 @@ namespace MVC.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id , int type)
         {
-            var users = db.Users.First(U => U.User_ID == id);
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
 
-            var login = db.Logins.FirstOrDefault(L => L.User_ID == id);
+            var users = db.Users.First(U => U.User_ID == id & U.employeeType == type);
+
+            var login = db.Logins.FirstOrDefault(L => L.User_ID == id & L.Type == type);
 
             MVC.Models.logg loggs = new Models.logg() { login = login, user = users , image = new Models.ImageToUpload() };
 
@@ -40,13 +50,18 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult Edit(User user , Login login , Models.ImageToUpload image)
         {
-            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID).firstname = user.firstname;
-            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID).lastname = user.lastname;
-            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID).middlename = user.middlename;
-            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID).hiredate = user.hiredate;
-            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID).salary = user.salary;
-            db.Logins.FirstOrDefault(U => U.User_ID == user.User_ID).UserName = login.UserName;
-            db.Logins.FirstOrDefault(U => U.User_ID == user.User_ID).Password = login.Password;
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).firstname = user.firstname;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).lastname = user.lastname;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).middlename = user.middlename;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).hiredate = user.hiredate;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).salary = user.salary;
+            db.Logins.FirstOrDefault(U => U.User_ID == user.User_ID & U.Type == login.Type).UserName = login.UserName;
+            db.Logins.FirstOrDefault(U => U.User_ID == user.User_ID & U.Type == login.Type).Password = login.Password;
 
             db.SaveChanges();
             return RedirectToAction("Index");
@@ -55,12 +70,22 @@ namespace MVC.Controllers
         [HttpGet]
         public ActionResult CreateAdmin()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult CreateAdmin(User user , Login login , Models.ImageToUpload image)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             byte[] array = new byte [2800];
 
             if (image.file != null)
@@ -116,8 +141,14 @@ namespace MVC.Controllers
             return  RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             db.Logins.FirstOrDefault(L => L.User_ID == id).status = false;
 
             db.SaveChanges();
@@ -128,12 +159,21 @@ namespace MVC.Controllers
 
         public ActionResult AllBooks ()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             return View(db.Books.ToList());
         }
         [HttpGet]
 
         public ActionResult AllPublishers ()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }            
             
             var result = from B in db.Books
                          select B.publisher;
@@ -146,6 +186,11 @@ namespace MVC.Controllers
 
         public ActionResult AllAuthors()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
 
             var result = from B in db.Books
                          select B.author;
@@ -157,11 +202,21 @@ namespace MVC.Controllers
         [HttpGet]
         public ActionResult Search ()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             return View();
         }
         [HttpGet]
         public ActionResult availablebooks (string search)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             if (search == null || search == string.Empty)
             {
                 var result = from B in db.Books
@@ -182,6 +237,11 @@ namespace MVC.Controllers
         [HttpGet]
         public ActionResult borrowedBooks ()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             var result = from B in db.borrowBooks
                          select B;
 
@@ -190,6 +250,11 @@ namespace MVC.Controllers
         [HttpGet]
         public ActionResult NewArrivedBooks(string search)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             DateTime pre = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
 
             if (search == null || search == string.Empty)
@@ -209,8 +274,14 @@ namespace MVC.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult mostborrowedbooks( string year)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             if(year == null || year == string.Empty)
             {
                 var result = db.most_borrowed_books().ToList();
@@ -224,8 +295,14 @@ namespace MVC.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult mostreadingbooks(string year)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             if (year == null || year == string.Empty)
             {
                 var result = db.most_reading_books().ToList();
@@ -239,6 +316,35 @@ namespace MVC.Controllers
                 
             }
         }
-        
+        [HttpGet]
+        public ActionResult logout ()
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            Session["username"] =null;
+            Session["type"] = null;
+            Session["user_id"] = null;
+
+            return RedirectToAction("SignIn", "Login");
+        }
+        [HttpGet]
+        public ActionResult profile()
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            int id = Int32.Parse( Session["user_id"].ToString());
+
+            var result = from A in db.Users
+                         where A.User_ID ==  id
+                         select A;
+
+            return View(result.FirstOrDefault());
+        }
     }
 }

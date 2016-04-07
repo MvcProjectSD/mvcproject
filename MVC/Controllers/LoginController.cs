@@ -27,21 +27,28 @@ namespace MVC.Controllers
 
             if (_objuserdetail.Count() > 0)
             {
+                objentity.Logins.FirstOrDefault(U => U.UserName == _objuserloginmodel.UserName).Login_No = _objuserloginmodel.Login_No + 1;
+
+                objentity.SaveChanges();
+
                 foreach (var h in _objuserdetail)
                 {
                     switch (h.Type)
                     {
                         case 1:
                             Session["username"] = _objuserloginmodel.UserName;
-                            Session["type"] = "Main_Admin";
+                            
+                            
 
                             var MainAdminID = (from data in objentity.Users
                                                where data.User_ID == h.User_ID
                                                 select data);
+                            Session["type"] =  MainAdminID.Select(X => X.employeeType).FirstOrDefault();;
+                            Session["user_id"] =  MainAdminID.Select(X => X.User_ID).FirstOrDefault();
+
                             foreach (var n in MainAdminID)
                             {
-
-                                return RedirectToAction("profile Main_Admin ", "Main_Admin", new { id = n.User_ID });
+                                return RedirectToAction("Index", "MainAdmin");
                             }
                             break;
 

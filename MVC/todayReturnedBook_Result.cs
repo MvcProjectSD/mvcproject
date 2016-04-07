@@ -21,5 +21,6 @@ namespace MVC
         public Nullable<System.DateTime> ActualReturnDate { get; set; }
         public int User_ID { get; set; }
         public string title { get; set; }
+        public string FullName { get; set; }
     }
 }

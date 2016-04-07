@@ -26,8 +26,13 @@
 			     <li><a class="dribbble" href="#" target="_blank"></a></li>
 			     <li><a class="vimeo" href="#" target="_blank"></a></li>
 		   </ul>
-		</div>	
+            <ul>
+                @Html.ActionLink(Session["username"].ToString(), "Profile")
+                @Html.ActionLink("LogOut", "logout")
+            </ul>
+        </div>
 		<div class="clear"></div>
+        
 	</div>
 	<div class='h_btm'>
 		<div class='cssmenu'>

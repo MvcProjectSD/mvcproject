@@ -173,7 +173,7 @@ namespace MVC.Controllers
         }
         public ActionResult TodayReturnBook()
         {
-            var today = EmployeeEntity.todayReturnedBook1();
+            var today = EmployeeEntity.todayReturnedBook();
             return View(today.ToList());
         }
         public ActionResult LateReturnBook()

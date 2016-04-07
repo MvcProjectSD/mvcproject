@@ -194,6 +194,7 @@
   <Function Name="most_reading_books_by_year" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="year" Type="int" Mode="In" />
   </Function>
+  <Function Name="todayReturnedBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="MVCProjectModelStoreContainer">
     <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="borrowBook" EntityType="Self.borrowBook" Schema="dbo" store:Type="Tables" />
