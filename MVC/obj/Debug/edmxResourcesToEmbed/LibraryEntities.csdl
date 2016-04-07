@@ -17,6 +17,7 @@
     <NavigationProperty Name="borrowBooks" Relationship="Self.FK_borrowBook_Book" FromRole="Book" ToRole="borrowBook" />
     <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBook_Book" FromRole="Book" ToRole="ReadingBook" />
     <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Book" FromRole="Book" ToRole="WishList" />
+    <Property Name="arrivedDate" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="borrowBook">
     <Key>
@@ -228,6 +229,8 @@
       <End Role="User" EntitySet="Users" />
       <End Role="borrowBook" EntitySet="borrowBooks" />
     </AssociationSet>
+    <FunctionImport Name="todayReturnedBook" ReturnType="Collection(MVCProjectModel.todayReturnedBook_Result)" />
+    <FunctionImport Name="todayReturnedBook1" ReturnType="Collection(MVCProjectModel.todayReturnedBook1_Result)" />
   </EntityContainer>
   <EntityType Name="Login">
     <Key>
@@ -240,6 +243,7 @@
     <Property Name="Login_No" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Member" Relationship="MVCProjectModel.FK_Login_Member" FromRole="Login" ToRole="Member" />
     <NavigationProperty Name="User" Relationship="MVCProjectModel.FK_Login_User" FromRole="Login" ToRole="User" />
+    <Property Name="status" Type="Boolean" />
   </EntityType>
   <Association Name="FK_Login_Member">
     <End Type="MVCProjectModel.Member" Role="Member" Multiplicity="0..1" />
@@ -277,4 +281,25 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="todayReturnedBook_Result">
+    <Property Type="Int32" Name="Borrow_ID" Nullable="false" />
+    <Property Type="Int32" Name="Book_ID" Nullable="false" />
+    <Property Type="Int32" Name="Member_ID" Nullable="false" />
+    <Property Type="DateTime" Name="Borrow_date" Nullable="false" />
+    <Property Type="DateTime" Name="return_date" Nullable="false" />
+    <Property Type="DateTime" Name="ActualReturnDate" Nullable="true" />
+    <Property Type="Int32" Name="User_ID" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="todayReturnedBook1_Result">
+    <Property Type="Int32" Name="Borrow_ID" Nullable="false" />
+    <Property Type="Int32" Name="Book_ID" Nullable="false" />
+    <Property Type="Int32" Name="Member_ID" Nullable="false" />
+    <Property Type="DateTime" Name="Borrow_date" Nullable="false" />
+    <Property Type="DateTime" Name="return_date" Nullable="false" />
+    <Property Type="DateTime" Name="ActualReturnDate" Nullable="true" />
+    <Property Type="Int32" Name="User_ID" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="false" />
+  </ComplexType>
 </Schema>

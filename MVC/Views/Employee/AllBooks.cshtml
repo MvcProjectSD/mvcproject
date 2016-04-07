@@ -1,0 +1,86 @@
+﻿@model IEnumerable<MVC.Book>
+
+@{
+    ViewBag.Title = "All Books";
+}
+
+<h2>All Books</h2>
+<form method="POST" action="">
+     <input type="text" name="name" />
+     <input type="submit" value="Search" /> 
+
+</form>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.publisher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.edition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfpages)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoOfCopies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Available)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.shelfNo)
+        </th>
+        <th></th>
+    </tr>
+ 
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                i
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.author)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.category)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.edition)
+            </td>
+            <td>
+  
+                  @Html.DisplayFor(modelItem => item.NoOfpages)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NoOfCopies)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Available)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.shelfNo)
+            </td>
+        
+        </tr>
+    }
+
+</table>
+@Html.ActionLink("Show today returned Book ", "TodayReturnBook") 
+@Html.ActionLink("Show late returned Book ", "LateReturnBook") 

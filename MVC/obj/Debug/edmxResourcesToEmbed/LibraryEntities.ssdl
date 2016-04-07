@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Book">
     <Key>
       <PropertyRef Name="Book_ID" />
@@ -14,6 +14,7 @@
     <Property Name="NoOfCopies" Type="int" Nullable="false" />
     <Property Name="Available" Type="bit" Nullable="false" />
     <Property Name="shelfNo" Type="int" Nullable="false" />
+    <Property Name="arrivedDate" Type="date" />
   </EntityType>
   <EntityType Name="borrowBook">
     <Key>
@@ -43,6 +44,7 @@
     <Property Name="Type" Type="int" Nullable="false" />
     <Property Name="User_ID" Type="int" />
     <Property Name="Login_No" Type="int" Nullable="false" />
+    <Property Name="status" Type="bit" />
   </EntityType>
   <EntityType Name="Member">
     <Key>
@@ -123,30 +125,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Login_Member">
-    <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
-    <End Role="Login" Type="Self.Login" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Member">
-        <PropertyRef Name="Member_ID" />
-      </Principal>
-      <Dependent Role="Login">
-        <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Login_User">
-    <End Role="User" Type="Self.User" Multiplicity="0..1" />
-    <End Role="Login" Type="Self.Login" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="User">
-        <PropertyRef Name="User_ID" />
-      </Principal>
-      <Dependent Role="Login">
-        <PropertyRef Name="User_ID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ReadingBook_Book">
     <End Role="Book" Type="Self.Book" Multiplicity="1" />
     <End Role="ReadingBook" Type="Self.ReadingBook" Multiplicity="*" />
@@ -207,6 +185,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="todayReturnedBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="MVCProjectModelStoreContainer">
     <EntitySet Name="Book" EntityType="Self.Book" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="borrowBook" EntityType="Self.borrowBook" Schema="dbo" store:Type="Tables" />
@@ -227,14 +206,6 @@
     <AssociationSet Name="FK_borrowBook_User" Association="Self.FK_borrowBook_User">
       <End Role="User" EntitySet="User" />
       <End Role="borrowBook" EntitySet="borrowBook" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Login_Member" Association="Self.FK_Login_Member">
-      <End Role="Member" EntitySet="Member" />
-      <End Role="Login" EntitySet="Login" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Login_User" Association="Self.FK_Login_User">
-      <End Role="User" EntitySet="User" />
-      <End Role="Login" EntitySet="Login" />
     </AssociationSet>
     <AssociationSet Name="FK_ReadingBook_Book" Association="Self.FK_ReadingBook_Book">
       <End Role="Book" EntitySet="Book" />

@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Books">
       <EntityTypeMapping TypeName="MVCProjectModel.Book">
         <MappingFragment StoreEntitySet="Book">
+          <ScalarProperty Name="arrivedDate" ColumnName="arrivedDate" />
           <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
           <ScalarProperty Name="title" ColumnName="title" />
           <ScalarProperty Name="author" ColumnName="author" />
@@ -88,6 +89,7 @@
     <EntitySetMapping Name="Logins">
       <EntityTypeMapping TypeName="MVCProjectModel.Login">
         <MappingFragment StoreEntitySet="Login">
+          <ScalarProperty Name="status" ColumnName="status" />
           <ScalarProperty Name="Login_No" ColumnName="Login_No" />
           <ScalarProperty Name="User_ID" ColumnName="User_ID" />
           <ScalarProperty Name="Type" ColumnName="Type" />
@@ -96,5 +98,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="todayReturnedBook1" FunctionName="MVCProjectModel.Store.todayReturnedBook">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.todayReturnedBook1_Result">
+          <ScalarProperty Name="Borrow_ID" ColumnName="Borrow_ID" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+          <ScalarProperty Name="Member_ID" ColumnName="Member_ID" />
+          <ScalarProperty Name="Borrow_date" ColumnName="Borrow_date" />
+          <ScalarProperty Name="return_date" ColumnName="return_date" />
+          <ScalarProperty Name="ActualReturnDate" ColumnName="ActualReturnDate" />
+          <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+          <ScalarProperty Name="title" ColumnName="title" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

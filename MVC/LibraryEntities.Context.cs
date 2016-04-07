@@ -12,6 +12,8 @@ namespace MVC
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MVCProjectEntities : DbContext
     {
@@ -33,5 +35,10 @@ namespace MVC
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WishList> WishLists { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
+    
+        public virtual ObjectResult<todayReturnedBook1_Result> todayReturnedBook1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<todayReturnedBook1_Result>("todayReturnedBook1");
+        }
     }
 }
