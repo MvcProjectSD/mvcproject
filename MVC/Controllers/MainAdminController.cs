@@ -124,11 +124,13 @@ namespace MVC.Controllers
 
             return RedirectToAction("Index");
         }
+        [HttpGet]
 
         public ActionResult AllBooks ()
         {
             return View(db.Books.ToList());
         }
+        [HttpGet]
 
         public ActionResult AllPublishers ()
         {
@@ -140,6 +142,7 @@ namespace MVC.Controllers
             return View(result.ToList().Distinct());
 
         }
+        [HttpGet]
 
         public ActionResult AllAuthors()
         {
@@ -151,12 +154,12 @@ namespace MVC.Controllers
             return View(result.ToList().Distinct());
 
         }
-
+        [HttpGet]
         public ActionResult Search ()
         {
             return View();
         }
-
+        [HttpGet]
         public ActionResult availablebooks (string search)
         {
             if (search == null || search == string.Empty)
@@ -176,7 +179,7 @@ namespace MVC.Controllers
                 return View(result.ToList());
             }
         }
-
+        [HttpGet]
         public ActionResult borrowedBooks ()
         {
             var result = from B in db.borrowBooks
@@ -184,7 +187,7 @@ namespace MVC.Controllers
 
             return View(result.ToList());
         }
-
+        [HttpGet]
         public ActionResult NewArrivedBooks(string search)
         {
             DateTime pre = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
@@ -210,11 +213,13 @@ namespace MVC.Controllers
         {
             if(year == null || year == string.Empty)
             {
-                return View();
+                var result = db.most_borrowed_books().ToList();
+                return View(result);
             }
             else
             {
-                return View();
+                var result = db.most_borrowed_books_by_year(Int32.Parse(year)).ToList();
+                return View(result);
 
             }
         }
@@ -223,12 +228,14 @@ namespace MVC.Controllers
         {
             if (year == null || year == string.Empty)
             {
-                return View();
+                var result = db.most_reading_books().ToList();
+                return View(result);
                
             }
             else
             {
-                return View();
+                var result = db.most_reading_books_by_year(Int32.Parse(year)).ToList();
+                return View(result);
                 
             }
         }

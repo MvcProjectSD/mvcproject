@@ -65,6 +65,7 @@
     <Property Name="Reading" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Book" Relationship="Self.FK_ReadingBook_Book" FromRole="ReadingBook" ToRole="Book" />
     <NavigationProperty Name="Member" Relationship="Self.FK_ReadingBook_Member" FromRole="ReadingBook" ToRole="Member" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -219,6 +220,14 @@
       <End Role="User" EntitySet="Users" />
       <End Role="borrowBook" EntitySet="borrowBooks" />
     </AssociationSet>
+    <FunctionImport Name="most_borrowed_books" ReturnType="Collection(String)" />
+    <FunctionImport Name="most_borrowed_books_by_year" ReturnType="Collection(String)">
+      <Parameter Name="year" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="most_reading_books" ReturnType="Collection(String)" />
+    <FunctionImport Name="most_reading_books_by_year" ReturnType="Collection(String)">
+      <Parameter Name="year" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="Login">
     <Key>
