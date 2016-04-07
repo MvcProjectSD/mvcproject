@@ -21,6 +21,7 @@ namespace MVC.Controllers
             var _objuserdetail = (from data in objentity.Logins
                                   where data.UserName == _objuserloginmodel.UserName
                                   && data.Password == _objuserloginmodel.Password
+                                  && data.status == true
                                   select data
                                   );
 
@@ -79,7 +80,7 @@ namespace MVC.Controllers
 
                             foreach (var n in MemberID)
                             {
-                                return RedirectToAction("profile", "Employee", new { id = n.User_ID });
+                                return RedirectToAction("Index", "Member", new { id = n.User_ID });
                             }
                             break;
 

@@ -6,7 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace MVC
 {
     using System;
@@ -20,13 +20,16 @@ namespace MVC
             this.borrowBooks = new HashSet<borrowBook>();
             this.ReadingBooks = new HashSet<ReadingBook>();
             this.WishLists = new HashSet<WishList>();
-            this.Logins = new HashSet<Login>();
         }
     
         public int Member_ID { get; set; }
+        [Display(Name="Name : ")]
         public string FullName { get; set; }
+        [Display(Name = "Email: ")]
         public string Email { get; set; }
+        [Display(Name = "Address : ")]
         public string Address { get; set; }
+        [Display(Name = "Phone Number : ")]
         public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -35,7 +38,5 @@ namespace MVC
         public virtual ICollection<ReadingBook> ReadingBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<WishList> WishLists { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Login> Logins { get; set; }
     }
 }

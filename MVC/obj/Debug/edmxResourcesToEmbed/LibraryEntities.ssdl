@@ -50,7 +50,7 @@
     <Key>
       <PropertyRef Name="Member_ID" />
     </Key>
-    <Property Name="Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Member_ID" Type="int" Nullable="false" />
     <Property Name="FullName" Type="varchar(max)" Nullable="false" />
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" />

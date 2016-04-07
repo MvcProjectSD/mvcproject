@@ -1,0 +1,19 @@
+﻿@model IEnumerable<String>
+@{
+    ViewBag.Title = "AllPublishers";
+}
+
+<h2>All Publishers</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped" style="width">
+    <tr>
+        <th>PUBLISHERS</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(p => item)</td>
+        </tr>
+    }
+</table>

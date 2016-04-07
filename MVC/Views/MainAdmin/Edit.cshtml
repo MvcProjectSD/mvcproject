@@ -6,7 +6,8 @@
 
 <h2>Edit</h2>
 
-
+@using (Html.BeginForm("Edit", "MainAdmin", FormMethod.Post))
+{
     <div class="form-horizontal">
         <h4>User</h4>
         <hr />
@@ -76,7 +77,7 @@
             </div>
         </div>
     </div>
-
+}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
