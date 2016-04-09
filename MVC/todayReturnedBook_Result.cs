@@ -10,17 +10,17 @@
 namespace MVC
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ReadingBook
+    public partial class todayReturnedBook_Result
     {
-        public int Reading_ID { get; set; }
+        public int Borrow_ID { get; set; }
         public int Book_ID { get; set; }
         public int Member_ID { get; set; }
-        public bool Reading { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
-    
-        public virtual Book Book { get; set; }
-        public virtual Member Member { get; set; }
+        public System.DateTime Borrow_date { get; set; }
+        public System.DateTime return_date { get; set; }
+        public Nullable<System.DateTime> ActualReturnDate { get; set; }
+        public int User_ID { get; set; }
+        public string title { get; set; }
+        public string FullName { get; set; }
     }
 }
