@@ -25,11 +25,14 @@ namespace MVC
         public int Member_ID { get; set; }
         [Display(Name="Name : ")]
         public string FullName { get; set; }
+       
         [Display(Name = "Email: ")]
         public string Email { get; set; }
         [Display(Name = "Address : ")]
         public string Address { get; set; }
+     
         [Display(Name = "Phone Number : ")]
+        [RegularExpression("[0-9]{11}",ErrorMessage="Please nter correct phone number")]
         public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
