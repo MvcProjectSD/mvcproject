@@ -18,9 +18,14 @@ namespace MVC.Controllers
         // GET: MainAdmin
         public ActionResult Index()
         {
+            string username = Session["username"].ToString();
             if (Session["username"] == null)
             {
                 return RedirectToAction("SignIn", "Login");
+            }
+            else if (db.Logins.FirstOrDefault(L => L.UserName == username ).Login_No == 0 )
+            {
+                return RedirectToAction("ChangePassword", new { error = "" });
             }
 
             var users = from U in db.Users
@@ -28,6 +33,72 @@ namespace MVC.Controllers
                         select  U;
 
             return View(users.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult ChangePassword( string error)
+        {
+            string username = Session["username"].ToString();
+            db.Logins.FirstOrDefault(U => U.UserName == username).Login_No = 1;
+            return View(error);
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(string password, string confirmpassword)
+        {
+            string username = Session["username"].ToString();
+            if(password == confirmpassword)
+            {
+                db.Logins.FirstOrDefault(L => L.UserName == username).Password = password;
+
+                db.SaveChanges();
+
+                return RedirectToAction("CompleteProfile", new { id = Session["user_id"], type = Session["type"] });
+            }
+
+            else 
+            {
+                return View("ChangePassword","" ,"Password Doesn't Match");
+            }
+        }
+
+        [HttpGet]
+        public ActionResult CompleteProfile(int id, int type)
+        {
+            string username = Session["username"].ToString();
+
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            var users = db.Users.First(U => U.User_ID == id & U.employeeType == type);
+
+            var login = db.Logins.FirstOrDefault(L => L.User_ID == id & L.Type == type);
+
+            MVC.Models.logg loggs = new Models.logg() { login = login, user = users, image = new Models.ImageToUpload() };
+
+            db.Logins.FirstOrDefault(U => U.UserName == username).Login_No = 0;
+            return View(loggs);
+        }
+
+        [HttpPost]
+        public ActionResult CompleteProfile(User user, Login login, Models.ImageToUpload image)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).firstname = user.firstname;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).lastname = user.lastname;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).middlename = user.middlename;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).birthdate = user.birthdate;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).address = user.address;
+            db.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).phoneNo = user.phoneNo;
+            db.Logins.FirstOrDefault(U => U.User_ID == user.User_ID & U.Type == user.employeeType).Login_No = 1;
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
