@@ -12,6 +12,8 @@ namespace MVC
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class MVCProjectEntities : DbContext
     {
@@ -33,5 +35,38 @@ namespace MVC
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<WishList> WishLists { get; set; }
         public virtual DbSet<Login> Logins { get; set; }
+    
+        public virtual ObjectResult<string> most_borrowed_books()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("most_borrowed_books");
+        }
+    
+        public virtual ObjectResult<string> most_borrowed_books_by_year(Nullable<int> year)
+        {
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("most_borrowed_books_by_year", yearParameter);
+        }
+    
+        public virtual ObjectResult<string> most_reading_books()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("most_reading_books");
+        }
+    
+        public virtual ObjectResult<string> most_reading_books_by_year(Nullable<int> year)
+        {
+            var yearParameter = year.HasValue ?
+                new ObjectParameter("year", year) :
+                new ObjectParameter("year", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("most_reading_books_by_year", yearParameter);
+        }
+    
+        public virtual ObjectResult<todayReturnedBook_Result> todayReturnedBook()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<todayReturnedBook_Result>("todayReturnedBook");
+        }
     }
 }

@@ -65,6 +65,7 @@
     <Property Name="Reading" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="Book" Relationship="Self.FK_ReadingBook_Book" FromRole="ReadingBook" ToRole="Book" />
     <NavigationProperty Name="Member" Relationship="Self.FK_ReadingBook_Member" FromRole="ReadingBook" ToRole="Member" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -219,6 +220,15 @@
       <End Role="User" EntitySet="Users" />
       <End Role="borrowBook" EntitySet="borrowBooks" />
     </AssociationSet>
+    <FunctionImport Name="most_borrowed_books" ReturnType="Collection(String)" />
+    <FunctionImport Name="most_borrowed_books_by_year" ReturnType="Collection(String)">
+      <Parameter Name="year" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="most_reading_books" ReturnType="Collection(String)" />
+    <FunctionImport Name="most_reading_books_by_year" ReturnType="Collection(String)">
+      <Parameter Name="year" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="todayReturnedBook" ReturnType="Collection(MVCProjectModel.todayReturnedBook_Result)" />
   </EntityContainer>
   <EntityType Name="Login">
     <Key>
@@ -243,4 +253,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="todayReturnedBook_Result">
+    <Property Type="Int32" Name="Borrow_ID" Nullable="false" />
+    <Property Type="Int32" Name="Book_ID" Nullable="false" />
+    <Property Type="Int32" Name="Member_ID" Nullable="false" />
+    <Property Type="DateTime" Name="Borrow_date" Nullable="false" />
+    <Property Type="DateTime" Name="return_date" Nullable="false" />
+    <Property Type="DateTime" Name="ActualReturnDate" Nullable="true" />
+    <Property Type="Int32" Name="User_ID" Nullable="false" />
+    <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="FullName" Nullable="false" />
+  </ComplexType>
 </Schema>

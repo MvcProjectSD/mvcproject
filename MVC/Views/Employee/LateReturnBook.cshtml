@@ -1,0 +1,57 @@
+﻿@model IEnumerable<MVC.borrowBook>
+
+@{
+    ViewBag.Title = "TodayIndex";
+}
+
+<h2> Today Books </h2>
+
+
+<table class="table">
+    <tr>
+
+        @*<th>
+            @Html.DisplayNameFor(model => model.book.title)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Borrow_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.return_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ActualReturnDate)
+        </th>
+
+
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.book.title)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Borrow_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.return_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualReturnDate)
+            </td>
+
+
+
+        </tr>
+    }
+
+</table>
+
+
+
+@Html.ActionLink("All Books", "AllBooks")
+

@@ -171,7 +171,7 @@
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainAdminController.cs" />
-    <Compile Include="Controllers\MemberController.cs" />
+    <Compile Include="fonts\MemberController.cs" />
     <Compile Include="EmployeeType.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
@@ -186,6 +186,9 @@
     <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
     <Compile Include="ReadingBook.cs">
+      <DependentUpon>LibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="todayReturnedBook_Result.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -307,12 +310,8 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config">
-      <SubType>Designer</SubType>
-    </Content>
+    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -335,8 +334,6 @@
     <Content Include="Views\Manage\ManageLogins.cshtml" />
     <Content Include="Views\Manage\SetPassword.cshtml" />
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
-    <Content Include="Views\Shared\Lockout.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\MainAdmin\CreateAdmin.cshtml" />
     <Content Include="Views\MainAdmin\Delete.cshtml" />
     <Content Include="Views\MainAdmin\Edit.cshtml" />
@@ -353,15 +350,28 @@
     <Content Include="Views\Employee\EditProfile.cshtml" />
     <Content Include="Views\Employee\Members.cshtml" />
     <Content Include="Views\Employee\AllBooks.cshtml" />
+    <Content Include="Views\Employee\CreateMember.cshtml" />
+    <Content Include="Views\Employee\EditMember.cshtml" />
+    <Content Include="Views\Employee\DeleteMember.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Employee\TodayReturnBook.cshtml" />
+    <Content Include="Views\Employee\LateReturnBook.cshtml" />
+    <Content Include="Views\Employee\ReadingBooks.cshtml" />
+    <Content Include="Views\Employee\Details.cshtml" />
+    <Content Include="Views\Employee\EditReadingBook.cshtml" />
+    <Content Include="Views\MainAdmin\AllAuthors.cshtml" />
     <Content Include="Views\MainAdmin\AllBooks.cshtml" />
     <Content Include="Views\MainAdmin\AllPublishers.cshtml" />
-    <Content Include="Views\MainAdmin\AllAuthors.cshtml" />
-    <Content Include="Views\MainAdmin\Search.cshtml" />
     <Content Include="Views\MainAdmin\availablebooks.cshtml" />
     <Content Include="Views\MainAdmin\borrowedBooks.cshtml" />
-    <Content Include="Views\MainAdmin\NewArrivedBooks.cshtml" />
     <Content Include="Views\MainAdmin\mostborrowedbooks.cshtml" />
     <Content Include="Views\MainAdmin\mostreadingbooks.cshtml" />
+    <Content Include="Views\MainAdmin\NewArrivedBooks.cshtml" />
+    <Content Include="Views\MainAdmin\Search.cshtml" />
+    <Content Include="Views\MainAdmin\profile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

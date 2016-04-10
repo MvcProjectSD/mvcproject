@@ -1,0 +1,54 @@
+﻿@model  User
+@{
+    ViewBag.Title = "profile";
+}
+
+<h2>profile</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>Property</th>
+        <th>Value</th>
+    </tr>
+        <tr>
+            <td> First Name</td>
+            <td>@Html.DisplayFor(p => p.firstname)</td>
+        </tr>
+    <tr>
+        <td> Middle Name</td>
+        <td>@Html.DisplayFor(p => p.middlename)</td>
+    </tr>
+    <tr>
+        <td> Last Name</td>
+        <td>@Html.DisplayFor(p => p.lastname)</td>
+    </tr>
+    <tr>
+        <td> Hire Date</td>
+        <td>@Html.DisplayFor(p => p.hiredate)</td>
+    </tr>
+    <tr>
+        <td> Birth Date</td>
+        <td>@Html.DisplayFor(p => p.birthdate)</td>
+    </tr>
+    <tr>
+        <td> Address</td>
+        <td>@Html.DisplayFor(p => p.address)</td>
+    </tr>
+    <tr>
+        <td> phone Number</td>
+        <td>@Html.DisplayFor(p => p.phoneNo)</td>
+    </tr>
+    <tr>
+        <td> Salary</td>
+        <td>@Html.DisplayFor(p => p.salary)</td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = Session["user_id"] , type = Session["type"] })
+            @Html.ActionLink("Back" ,"Index")
+
+        </td>
+    </tr>
+</table>
+

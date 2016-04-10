@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<User>
 
 @Html.ActionLink("Create New Admin", "CreateAdmin")
+<br />
+<br />
 
 <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
     <tr>
@@ -27,7 +29,7 @@
             <td>@Html.DisplayFor(p => item.address)</td>
             <td>@Html.DisplayFor(p => item.phoneNo)</td>
             <td>@Html.DisplayFor(p => item.salary)</td>
-            <td>@Html.ActionLink("Edit Me", "Edit", new { id = item.User_ID })</td>
+            <td>@Html.ActionLink("Edit Me", "Edit", new { id = item.User_ID , type = item.employeeType })</td>
             <td>@Html.ActionLink("Delete Me", "Delete", new { id = item.User_ID })</td>
         </tr>
     }
