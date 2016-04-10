@@ -125,13 +125,11 @@ namespace MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        [HttpGet]
         public ActionResult AllBooks ()
         {
             return View(db.Books.ToList());
         }
 
-        [HttpGet]
         public ActionResult AllPublishers ()
         {
             
@@ -143,7 +141,6 @@ namespace MVC.Controllers
 
         }
 
-        [HttpGet]
         public ActionResult AllAuthors()
         {
 
@@ -155,13 +152,11 @@ namespace MVC.Controllers
 
         }
 
-        [HttpGet]
         public ActionResult Search ()
         {
             return View();
         }
 
-        [HttpGet]
         public ActionResult availablebooks (string search)
         {
             if (search == null || search == string.Empty)
@@ -182,7 +177,6 @@ namespace MVC.Controllers
             }
         }
 
-        [HttpGet]
         public ActionResult borrowedBooks ()
         {
             var result = from B in db.borrowBooks
@@ -191,7 +185,6 @@ namespace MVC.Controllers
             return View(result.ToList());
         }
 
-        [HttpGet]
         public ActionResult NewArrivedBooks(string search)
         {
             DateTime pre = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);

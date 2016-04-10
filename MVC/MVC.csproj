@@ -185,7 +185,6 @@
     </Compile>
     <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
-    <Compile Include="Models\Memlog.cs" />
     <Compile Include="ReadingBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
@@ -363,7 +362,6 @@
     <Content Include="Views\MainAdmin\NewArrivedBooks.cshtml" />
     <Content Include="Views\MainAdmin\mostborrowedbooks.cshtml" />
     <Content Include="Views\MainAdmin\mostreadingbooks.cshtml" />
-    <Content Include="Views\Member\NewBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

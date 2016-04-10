@@ -1,49 +1,23 @@
-﻿
-@model MVC.Models.Memlog
-           @{
-               ViewBag.Title = "UpdateProfile";
-           }
+﻿@model Member
+
     <h1>update profile</h1>
-<form method="post" action="">
-    <div class="form-group" hidden>
+    <form method="post" action="">
+        <div class="form-group">
+            @Html.DisplayNameFor(t => t.FullName)<br />
+            @Html.EditorFor(t => t.FullName, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" }  })
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(t => t.Email)<br />
+            @Html.EditorFor(t => t.Email, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(t => t.Address)<br />
+            @Html.EditorFor(t => t.Address, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" }  })
+        </div>
+        <div class="form-group">
+            @Html.DisplayNameFor(t => t.PhoneNumber)<br />
+            @Html.EditorFor(t => t.PhoneNumber, new { htmlAttributes = new { @class = "form-control" , Style = "Border-Color : #FF0066" } })
+        </div>
+        <input type="submit" value="Ok" />
 
-        @Html.DisplayNameFor(t => t.member.Member_ID)<br />
-        @Html.EditorFor(t => t.member.Member_ID, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
-        @Html.ValidationMessageFor(t => t.member.Member_ID, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-       
-        @Html.DisplayNameFor(t => t.login.UserName)<br />
-        @Html.EditorFor(t => t.login.UserName, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
-        @Html.ValidationMessageFor(t => t.login.UserName, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.DisplayNameFor(t => t.login.Password)<br />
-        @Html.EditorFor(t => t.login.Password, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
-        @Html.ValidationMessageFor(t => t.login.Password, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.DisplayNameFor(t => t.member.FullName)<br />
-        @Html.EditorFor(t => t.member.FullName, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
-        @Html.ValidationMessageFor(t => t.member.FullName, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.DisplayNameFor(t => t.member.Email)<br />
-        @Html.EditorFor(t => t.member.Email, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
-        @Html.ValidationMessageFor(t => t.member.Email, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.DisplayNameFor(t => t.member.Address)<br />
-        @Html.EditorFor(t => t.member.Address, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
-        @Html.ValidationMessageFor(t => t.member.Address, "", new { @class = "text-danger" })
-    </div>
-    <div class="form-group">
-        @Html.DisplayNameFor(t => t.member.PhoneNumber)<br />
-        @Html.EditorFor(t => t.member.PhoneNumber, new { htmlAttributes = new { @class = "form-control", Style = "Border-Color : #FF0066" } })
-        @Html.ValidationMessageFor(p => p.member.PhoneNumber, "", new { @class = "text-danger" })
-    </div>
-    <input type="submit" value="Ok" />
-
-
-</form>
-
+    </form>
