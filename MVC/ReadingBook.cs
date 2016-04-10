@@ -18,7 +18,6 @@ namespace MVC
         public int Book_ID { get; set; }
         public int Member_ID { get; set; }
         public bool Reading { get; set; }
-        public Nullable<System.DateTime> Date { get; set; }
     
         public virtual Book Book { get; set; }
         public virtual Member Member { get; set; }

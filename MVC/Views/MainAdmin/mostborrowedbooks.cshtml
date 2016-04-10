@@ -1,4 +1,4 @@
-﻿@model IEnumerable<String>
+﻿
 @{
     ViewBag.Title = "mostborrowedbooks";
 }
@@ -14,28 +14,5 @@
     </tr>
 </table>
 
-@using (Html.BeginForm("mostborrowedbooks", "MainAdmin", FormMethod.Post))
-{
-    @: Year
-    <input type="text" name="year" />
-    <input type="submit" value="Search" />
-}
-
-<h2>Most Borrowed Books</h2>
-
-<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
-    <tr>
-        <th>Book Title</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>@Html.DisplayFor(p => item)</td>
-        </tr>
-    }
-</table>
-
-
-
+<h2>mostborrowedbooks</h2>
 

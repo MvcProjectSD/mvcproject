@@ -5,16 +5,10 @@
 }
 
 <h2>All Members</h2>
-<form method="POST" action="">
-    <input type="text" name="name" />
-    <input type="submit" value="Search" />
-    
-    @Html.DropDownList("typeOfSearch", ViewData["typeOfSearch"] as List<SelectListItem>)
-</form>
 
-<p>
-    @Html.ActionLink("Create New", "CreateMember")
-</p>
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
 <table class="table">
     <tr>
         <th>
@@ -36,7 +30,7 @@
     {
         <tr>
             <td>
-                
+                i
                 @Html.DisplayFor(modelItem => item.FullName)
             </td>
             <td>
@@ -48,11 +42,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.PhoneNumber)
             </td>
-            <td>
-                @Html.ActionLink("Edit", "EditMember", new { id = item.Member_ID }) |
-                
-                @Html.ActionLink("Delete", "DeleteMember", new { id = item.Member_ID })
-            </td>
+            @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id=item.Member_ID }) |
+                    @Html.ActionLink("Details", "Details", new { id=item.Member_ID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id=item.Member_ID })
+                </td>*@
         </tr>
     }
 
