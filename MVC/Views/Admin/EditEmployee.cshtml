@@ -1,0 +1,86 @@
+﻿@model MVC.User
+@{
+    ViewBag.Title = "EditEmployee";
+    //Layout = "~/Views/Member/MemberLayout.cshtml";
+}
+
+<h2>Edit Employee</h2>
+<form method="post" action="">
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(emp => emp.User_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.firstname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.firstname)
+                @Html.ValidationMessageFor(emp => emp.firstname)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.middlename, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.middlename)
+                @Html.ValidationMessageFor(emp => emp.middlename)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.lastname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.lastname)
+                @Html.ValidationMessageFor(emp => emp.lastname)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.hiredate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.hiredate)
+                @Html.ValidationMessageFor(emp => emp.hiredate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.birthdate, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.birthdate)
+                @Html.ValidationMessageFor(emp => emp.birthdate)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.address)
+                @Html.ValidationMessageFor(emp => emp.address)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.phoneNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.phoneNo)
+                @Html.ValidationMessageFor(emp => emp.phoneNo)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.employeeType, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.employeeType)
+                @Html.ValidationMessageFor(emp => emp.employeeType)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(emp => emp.salary, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(emp => emp.salary)
+                @Html.ValidationMessageFor(emp => emp.salary)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+<div>
+    @Html.ActionLink("Cancel Editing", "Employees")
+</div>
+
