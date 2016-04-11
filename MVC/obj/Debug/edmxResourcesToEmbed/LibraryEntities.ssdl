@@ -15,6 +15,7 @@
     <Property Name="Available" Type="bit" Nullable="false" />
     <Property Name="shelfNo" Type="int" Nullable="false" />
     <Property Name="arrivedDate" Type="date" />
+    <Property Name="Publishing_date" Type="date" />
   </EntityType>
   <EntityType Name="borrowBook">
     <Key>
@@ -50,7 +51,7 @@
     <Key>
       <PropertyRef Name="Member_ID" />
     </Key>
-    <Property Name="Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Member_ID" Type="int" Nullable="false" />
     <Property Name="FullName" Type="varchar(max)" Nullable="false" />
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" />
@@ -186,6 +187,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="borrowed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="most_borrowed_books" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="most_borrowed_books_by_year" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="year" Type="int" Mode="In" />

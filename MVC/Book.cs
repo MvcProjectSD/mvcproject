@@ -33,6 +33,7 @@ namespace MVC
         public bool Available { get; set; }
         public int shelfNo { get; set; }
         public Nullable<System.DateTime> arrivedDate { get; set; }
+        public Nullable<System.DateTime> Publishing_date { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<borrowBook> borrowBooks { get; set; }

@@ -11,7 +11,7 @@ namespace MVC.Controllers
     public class EmployeeController : Controller
     {
         MVCProjectEntities EmployeeEntity = new MVCProjectEntities();
-
+        static int BookID;
         [HttpGet]
         public ActionResult Index()
         {
@@ -160,45 +160,32 @@ namespace MVC.Controllers
 
 
         // Books
-        public ActionResult AllBooks(string name)
+        public ActionResult AllBooks(string typeOfSearch)
         {
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "Search by", Value = "0" });
+            li.Add(new SelectListItem { Text = "cultural", Value = "1" });
+            li.Add(new SelectListItem { Text = "Politician", Value = "2" });
+
+            ViewData["typeOfSearch"] = li;
+
+
             var _objuserdetail = (from data in EmployeeEntity.Books select data);
-            if (!string.IsNullOrEmpty(name))
+            if (!string.IsNullOrEmpty(typeOfSearch))
             {
-                return View(_objuserdetail.Where(b => b.category.ToLower().Contains(name)).ToList());
+                if (typeOfSearch == "1")
+                    return View(_objuserdetail.Where(b => b.category.ToLower().Contains("cultural")).ToList());
+                else if (typeOfSearch == "2")
+                    return View(_objuserdetail.Where(b => b.category.ToLower().Contains("Politician")).ToList());
+                else
+                    return View(EmployeeEntity.Books.ToList());
+
             }
             else
             {
                 return View(_objuserdetail.ToList());
             }
         }
-
-        //public ActionResult AllBooks(string typeOfSearch)
-        //{
-        //    List<SelectListItem> li = new List<SelectListItem>();
-        //    li.Add(new SelectListItem { Text = "Search by", Value = "0" });
-        //    li.Add(new SelectListItem { Text = "cultural", Value = "1" });
-        //    li.Add(new SelectListItem { Text = "Politician", Value = "2" });
-
-        //    ViewData["typeOfSearch"] = li;
-
-
-        //    var _objuserdetail = (from data in EmployeeEntity.Books select data);
-        //    if (!string.IsNullOrEmpty(typeOfSearch))
-        //    {
-        //        if (typeOfSearch == "1")
-        //            return View(_objuserdetail.Where(b => b.category.ToLower().Contains(typeOfSearch).ToList());
-        //        else if (typeOfSearch == "2")
-        //            return View(_objuserdetail.Where(b => b.category.ToLower().Contains("Politician")).ToList());
-        //        else
-        //            return View(EmployeeEntity.Books.ToList());
-
-        //    }
-        //    else
-        //    {
-        //        return View(_objuserdetail.ToList());
-        //    }
-        //}
 
 
 
@@ -260,6 +247,7 @@ namespace MVC.Controllers
         {
 
             EmployeeEntity.ReadingBooks.Remove(EmployeeEntity.ReadingBooks.Find(read.Reading_ID));
+
             EmployeeEntity.ReadingBooks.Add(read);
             EmployeeEntity.SaveChanges();
             return RedirectToAction("Details");
@@ -307,6 +295,48 @@ namespace MVC.Controllers
                              select B;
                 return View(result.ToList());
             }
+        }
+        public ActionResult borrowThisBook(int id)
+        {
+            BookID = id;
+           
+            var borow = (from b in EmployeeEntity.borrowBooks
+                         where b.Book_ID == id
+                         select b).ToList();
+            var book= (from b in EmployeeEntity.Books
+                       where b.Book_ID == id
+                       select b).ToList();
+
+
+            foreach (var d in book)
+            {
+                if (d.NoOfCopies - borow.Count > 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    ViewBag.Message = 0;
+                     
+
+                }
+
+            }
+                return RedirectToAction("AllBooks");
+
+
+        }
+        [HttpPost]
+        public ActionResult borrowThisBook(borrowBook br)
+        {
+            br.Book_ID = BookID;
+            int max_id = (EmployeeEntity.borrowBooks.OrderByDescending(u => u.Borrow_ID).FirstOrDefault().Borrow_ID);
+            br.Borrow_ID = max_id + 1;
+            EmployeeEntity.borrowBooks.Add(br);
+            EmployeeEntity.SaveChanges();
+
+            return RedirectToAction("AllBooks");
+
         }
 
     }
