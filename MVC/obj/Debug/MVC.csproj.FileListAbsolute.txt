@@ -272,7 +272,6 @@ D:\mvcproject\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 D:\mvcproject\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
 D:\mvcproject\MVC\obj\Debug\MVC.dll
 D:\mvcproject\MVC\obj\Debug\MVC.pdb
-C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
 C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\obj\Debug\MVC.dll
 C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\bin\MVC.dll.config
 C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\bin\MVC.dll
@@ -327,3 +326,4 @@ C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\bin\Microsoft.Owin.Securi
 C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\obj\Debug\MVC.pdb
+C:\Users\Ahmed\Desktop\mvcproject (GitHub Desktop)\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache

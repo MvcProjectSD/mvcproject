@@ -382,6 +382,11 @@
     <Content Include="Views\Admin\DeleteEmployee.cshtml" />
     <Content Include="Views\Admin\CreateEmployee.cshtml" />
     <Content Include="Views\Admin\DeleteBook.cshtml" />
+    <Content Include="Views\Admin\CreateBook.cshtml" />
+    <Content Include="Views\Admin\Members.cshtml" />
+    <Content Include="Views\Admin\EditMember.cshtml" />
+    <Content Include="Views\Admin\DeleteMember.cshtml" />
+    <Content Include="Views\Admin\CreateMember.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
