@@ -1,79 +1,41 @@
-﻿@model IEnumerable<MVC.Book>
-
+﻿@model IEnumerable<Book>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "NewArrivedBooks";
 }
 
-<h2> ALL New  Books </h2>
 
 
+<h2>New Arrived Books</h2>
 
-
-
-<table class="table">
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.author)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.publisher)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.category)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.edition)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoOfpages)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NoOfCopies)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Available)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.shelfNo)
-        </th>
-        <th></th>
+        <th>@Html.DisplayNameFor(p => p.Book_ID)</th>
+        <th>@Html.DisplayNameFor(p => p.title)</th>
+        <th>@Html.DisplayNameFor(p => p.author)</th>
+        <th>@Html.DisplayNameFor(p => p.publisher)</th>
+        <th>@Html.DisplayNameFor(p => p.category)</th>
+        <th>@Html.DisplayNameFor(p => p.edition)</th>
+        <th>@Html.DisplayNameFor(p => p.NoOfpages)</th>
+        <th>@Html.DisplayNameFor(p => p.NoOfCopies)</th>
+        <th>@Html.DisplayNameFor(p => p.Available)</th>
+        <th>@Html.DisplayNameFor(p => p.shelfNo)</th>
+        <th>@Html.DisplayNameFor(p => p.arrivedDate)</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.author)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.publisher)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.category)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.edition)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfpages)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfCopies)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Available)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.shelfNo)
-            </td>
-
+            <td>@Html.DisplayFor(p => item.Book_ID)</td>
+            <td>@Html.DisplayFor(p => item.title)</td>
+            <td>@Html.DisplayFor(p => item.author)</td>
+            <td>@Html.DisplayFor(p => item.publisher)</td>
+            <td>@Html.DisplayFor(p => item.category)</td>
+            <td>@Html.DisplayFor(p => item.edition)</td>
+            <td>@Html.DisplayFor(p => item.NoOfpages)</td>
+            <td>@Html.DisplayFor(p => item.NoOfCopies)</td>
+            <td>@Html.DisplayFor(p => item.Available)</td>
+            <td>@Html.DisplayFor(p => item.shelfNo)</td>
+            <td>@Html.DisplayFor(p => item.arrivedDate)</td>
         </tr>
     }
-
 </table>
