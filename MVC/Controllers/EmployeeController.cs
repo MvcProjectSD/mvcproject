@@ -171,11 +171,11 @@ namespace MVC.Controllers
                 return View(_objuserdetail.ToList());
             }
         }
-        public ActionResult TodayReturnBook()
+      /*  public ActionResult TodayReturnBook()
         {
             var today = EmployeeEntity.todayReturnedBook();
             return View(today.ToList());
-        }
+        }*/
         public ActionResult LateReturnBook()
         {
             var _objuserdetail = (from data in EmployeeEntity.borrowBooks

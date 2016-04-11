@@ -23,7 +23,7 @@ namespace MVC
         }
     
         public int Book_ID { get; set; }
-        [Display(Name = "Title  ")]
+        [Display(Name = "Book Name  ")]
         public string title { get; set; }
         [Display(Name = "Author  ")]
         public string author { get; set; }
@@ -37,7 +37,7 @@ namespace MVC
         [Display(Name = "Number Of Pages  ")]
         public int NoOfCopies { get; set; }
         public bool Available { get; set; }
-        [Display(Name = "Shelft Number  ")]
+        [Display(Name = "Shelf Number  ")]
         public int shelfNo { get; set; }
         public Nullable<System.DateTime> arrivedDate { get; set; }
     

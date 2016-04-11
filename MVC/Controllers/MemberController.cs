@@ -81,7 +81,171 @@ namespace MVC.Controllers
 
 
         }
+        public ActionResult ReadingBooks(int id )
+        {
+            
+            Session["id"] = id;
+            ViewBag.Message = id;
+            var books = (from book in DB.Books
+                        join book1 in DB.ReadingBooks
+                        on book.Book_ID equals book1.Book_ID
+                        where book1.Member_ID == id & book1.Date.Value.Month == DateTime.Now.Month & book1.Date <= DateTime.Now
+                        select book).ToList();
+            return View(books);
+            
 
+        }
+
+   [HttpGet]
+
+        public ActionResult ReadingMonth(string month)
+        {
+            
+            var id = Convert.ToInt32(Session["id"]);
+            ViewBag.Message = id;
+            if (string.IsNullOrWhiteSpace(month))
+            {
+                
+                var books = (
+                              from book1 in DB.Books
+                              join book in DB.ReadingBooks
+                             on book1.Book_ID equals book.Book_ID
+
+                              where book.Member_ID == id
+                             select book1).ToList();
+                
+                return View(books);
+
+            }
+            else
+            {
+                var books = (from book1 in DB.Books
+                             join book in DB.ReadingBooks
+                            on book1.Book_ID equals book.Book_ID
+
+                             where book.Member_ID == id & book.Date.Value.Month.ToString() == month 
+                             select book1).ToList();
+                return View(books);
+ 
+            }
+        }
+        public ActionResult ReadingYear(string year)
+   {
+            var id = Convert.ToInt32(Session["id"]);
+            ViewBag.Message = id;
+            if (string.IsNullOrWhiteSpace(year))
+            {
+                
+                var books = (
+                              from book1 in DB.Books
+                              join book in DB.ReadingBooks
+                             on book1.Book_ID equals book.Book_ID
+
+                              where book.Member_ID == id
+                             select book1).ToList();
+                
+                return View(books);
+
+            }
+            else
+            {
+                var books = (from book1 in DB.Books
+                             join book in DB.ReadingBooks
+                            on book1.Book_ID equals book.Book_ID
+
+                             where book.Member_ID == id & book.Date.Value.Year.ToString() == year 
+                             select book1).ToList();
+                return View(books);
+ 
+            }
+   }
+        public ActionResult BorrowedBooks(int id)
+        {
+            
+            ViewBag.Message = id;
+            Session["id2"] = id;
+            var books = (from book in DB.Books
+                         join book1 in DB.borrowBooks
+                         on book.Book_ID equals book1.Book_ID
+                         where book1.Member_ID == id & book1.Borrow_date.Month == DateTime.Now.Month & book1.Borrow_date <= DateTime.Now
+                         select book).ToList();
+            return View(books);
+        }
+        public ActionResult CurrentBorrowed()
+        {
+            var id = Convert.ToInt32(Session["id2"]);
+            ViewBag.Message = id;
+            var books = (from book in DB.Books
+                         join book1 in DB.borrowBooks
+                         on book.Book_ID equals book1.Book_ID
+                         where book1.Member_ID == id & book1.Borrow_date <= DateTime.Now & book1.return_date >= DateTime.Now & book1.ActualReturnDate == null
+                         select new MVC.Models.currentbook { book = book, borrowedbook = book1 }).ToList();
+                         return View(books);
+        }
+
+        [HttpGet]
+        public ActionResult BorrowedMonth(string month)
+        {
+            var id = Convert.ToInt32(Session["id2"]);
+            ViewBag.Message = id;
+            if (string.IsNullOrWhiteSpace(month))
+            {
+
+                var books = (
+                              from book1 in DB.Books
+                              join book in DB.borrowBooks
+                             on book1.Book_ID equals book.Book_ID
+
+                              where book.Member_ID == id
+                              select book1).ToList();
+
+                return View(books);
+
+            }
+            else
+            {
+                var books = (from book1 in DB.Books
+                             join book in DB.borrowBooks
+                            on book1.Book_ID equals book.Book_ID
+
+                             where book.Member_ID == id & book.Borrow_date.Month.ToString() == month
+                             select book1).ToList();
+                return View(books);
+
+            }
+
+        }
+        public ActionResult BorrowedYear(string year)
+        {
+            var id = Convert.ToInt32(Session["id2"]);
+            ViewBag.Message = id;
+            if (string.IsNullOrWhiteSpace(year))
+            {
+
+                var books = (
+                              from book1 in DB.Books
+                              join book in DB.borrowBooks
+                             on book1.Book_ID equals book.Book_ID
+
+                              where book.Member_ID == id
+                              select book1).ToList();
+
+                return View(books);
+
+            }
+            else
+            {
+                var books = (from book1 in DB.Books
+                             join book in DB.borrowBooks
+                            on book1.Book_ID equals book.Book_ID
+
+                             where book.Member_ID == id & book.Borrow_date.Year.ToString() == year
+                             select book1).ToList();
+                return View(books);
+
+            }
+
+        }
         public ActionResult MemberHome()
         {
             return View();

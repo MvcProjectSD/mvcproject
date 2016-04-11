@@ -26,6 +26,9 @@
                 @Html.DisplayNameFor(t => t.shelfNo)
             </th>
             <th>
+                @Html.DisplayNameFor(t => t.arrivedDate)
+            </th>
+            <th>
                 @Html.DisplayNameFor(t => t.Available)
             </th>
         </tr>
@@ -49,7 +52,10 @@
             </td>                     
             <td>                      
                 @Html.DisplayFor(t => item.shelfNo)
-            </td>                     
+            </td> 
+            <td>
+                @Html.DisplayFor(t => item.arrivedDate)
+            </td>                    
             <td>                      
                 @Html.DisplayFor(t => item.Available)
             </td>                     

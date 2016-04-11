@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MVC.Models.currentbook>
+
+<h3>Current Borrowed Books</h3>
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(t => t.book.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.book.category)
+        </th>
+<th>
+    @Html.DisplayNameFor(t => t.borrowedbook.Borrow_date)
+</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(t => item.book.title)
+            </td>
+
+            <td>
+                @Html.DisplayFor(t => item.book.category)
+            </td>
+ 
+            <td>
+                @Html.DisplayFor(t => item.borrowedbook.Borrow_date)
+            </td>
+        </tr>
+    }
+</table>

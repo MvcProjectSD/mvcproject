@@ -35,8 +35,8 @@
                             <li class='active'>@Html.ActionLink("Home", "Index", new { id = @ViewBag.Message })</li>
                             <li>@Html.ActionLink("Update Profile", "UpdateProfile", new { id = @ViewBag.Message })</li>
                             <li>@Html.ActionLink("New Books", "NewBooks", new { id = @ViewBag.Message })</li>
-                            <li class='has-sub'><a href='service.html'><span>Read Books</span></a></li>
-                            <li class='last'><a href='contact.html'><span>Borrowed Books</span></a></li>
+                            <li class='has-sub'>@Html.ActionLink("Reading Books", "ReadingBooks", new { id = @ViewBag.Message })</li>
+                            <li class='last'>@Html.ActionLink("Borrowed Books", "BorrowedBooks", new { id = @ViewBag.Message })</li>
                             <div class="clear"></div>
                         </ul>
                     </div><br />

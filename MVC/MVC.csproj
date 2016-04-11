@@ -183,6 +183,7 @@
     <Compile Include="Member.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\currentbook.cs" />
     <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
     <Compile Include="Models\Memlog.cs" />
@@ -364,6 +365,13 @@
     <Content Include="Views\MainAdmin\mostborrowedbooks.cshtml" />
     <Content Include="Views\MainAdmin\mostreadingbooks.cshtml" />
     <Content Include="Views\Member\NewBooks.cshtml" />
+    <Content Include="Views\Member\ReadingBooks.cshtml" />
+    <Content Include="Views\Member\ReadingMonth.cshtml" />
+    <Content Include="Views\Member\ReadingYear.cshtml" />
+    <Content Include="Views\Member\BorrowedBooks.cshtml" />
+    <Content Include="Views\Member\CurrentBorrowed.cshtml" />
+    <Content Include="Views\Member\BorrowedMonth.cshtml" />
+    <Content Include="Views\Member\BorrowedYear.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
