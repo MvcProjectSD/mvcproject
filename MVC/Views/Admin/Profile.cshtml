@@ -1,0 +1,49 @@
+﻿@model  MVC.User
+
+<!--table class="table-bordered"-->
+
+    <h1 class="text-center"> <b> Welcome your profile </b> </h1>
+    <br>
+
+    <div>
+        firstname:@Model.firstname
+    </div>
+
+    <div>
+        middlename:@Model.middlename
+    </div>
+
+    <div>
+        lastname:@Model.lastname
+    </div>
+
+
+    <div>
+        hiredate:@Model.hiredate
+    </div>
+
+    <div>
+        birthdate:@Model.birthdate
+    </div>
+
+    <div>
+        address:@Model.address
+    </div>
+
+    <div>
+        phoneNo:@Model.phoneNo
+    </div>
+    <div>
+        phoneNo:@Model.salary
+    </div>
+
+<!--/table-->
+
+@Html.ActionLink("Edit Profile", "EditProfile", new { id = @Model.User_ID })
+@Html.ActionLink("Employees","Employees")
+@Html.ActionLink("Books Page","Books")
+<br />
+
+
+
+

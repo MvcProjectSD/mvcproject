@@ -62,7 +62,7 @@ namespace MVC.Controllers
                                            select data);
                             foreach (var n in AdminID)
                             {
-                                return RedirectToAction("profile Admin", "Admin", new { id = n.User_ID });
+                                return RedirectToAction("Profile", "Admin", new { id = n.User_ID });
                             }
                             break;
 
