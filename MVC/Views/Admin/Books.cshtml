@@ -5,6 +5,9 @@
 }
 
 <h2>Books</h2>
+<p>
+    @Html.ActionLink("Create New Book", "CreateBook")
+</p>
 
 <table class="table table-bordered table-hover table-striped">
     <tr>
@@ -74,7 +77,7 @@
                 @Html.DisplayFor(modelItem => item.shelfNo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditBook", new { id = item.Book_ID })
+                @Html.ActionLink("Edit", "EditBooks", new { id = item.Book_ID })
                 @Html.ActionLink("Delete", "DeleteBook", new { id = item.Book_ID })
             </td>
 

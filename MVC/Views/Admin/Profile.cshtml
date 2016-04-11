@@ -1,6 +1,6 @@
 ﻿@model  MVC.User
 
-<table class="table-bordered">
+<!--table class="table-bordered"-->
 
     <h1 class="text-center"> <b> Welcome your profile </b> </h1>
     <br>
@@ -37,9 +37,11 @@
         phoneNo:@Model.salary
     </div>
 
-</table>
+<!--/table-->
 
 @Html.ActionLink("Edit Profile", "EditProfile", new { id = @Model.User_ID })
+@Html.ActionLink("Employees","Employees")
+@Html.ActionLink("Books Page","Books")
 <br />
 
 

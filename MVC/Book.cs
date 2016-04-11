@@ -6,7 +6,7 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System.ComponentModel.DataAnnotations;
 namespace MVC
 {
     using System;
@@ -23,14 +23,21 @@ namespace MVC
         }
     
         public int Book_ID { get; set; }
+        [Display(Name = "Book Name  ")]
         public string title { get; set; }
+        [Display(Name = "Author  ")]
         public string author { get; set; }
+        [Display(Name = "Publisher  ")]
         public string publisher { get; set; }
+        [Display(Name = "Category  ")]
         public string category { get; set; }
+        [Display(Name = "Edition  ")]
         public Nullable<int> edition { get; set; }
         public Nullable<int> NoOfpages { get; set; }
+        [Display(Name = "Number Of Pages  ")]
         public int NoOfCopies { get; set; }
         public bool Available { get; set; }
+        [Display(Name = "Shelf Number  ")]
         public int shelfNo { get; set; }
         public Nullable<System.DateTime> arrivedDate { get; set; }
         public Nullable<System.DateTime> Publishing_date { get; set; }

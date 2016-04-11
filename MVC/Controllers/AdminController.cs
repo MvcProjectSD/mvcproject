@@ -28,6 +28,7 @@ namespace MVC.Controllers
             {
                 return RedirectToAction("SignIn", "Login");
             }
+
             User admin = AdminEntity.Users.Find(id);
             return View(admin);
         }
@@ -49,6 +50,7 @@ namespace MVC.Controllers
             {
                 return RedirectToAction("SignIn", "Login");
             }
+
             var EditAdmin = from user in AdminEntity.Users
                             where user.User_ID == admin.User_ID
                             select user;
@@ -132,6 +134,10 @@ namespace MVC.Controllers
 
         public ActionResult EditEmployee(int? id)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -147,6 +153,11 @@ namespace MVC.Controllers
         [HttpPost]
         public ActionResult EditEmployee(User user)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
             if (ModelState.IsValid)
             {
                 AdminEntity.Entry(user).State = EntityState.Modified;
@@ -158,6 +169,10 @@ namespace MVC.Controllers
 
         public ActionResult DeleteEmployee(int? id)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -170,12 +185,187 @@ namespace MVC.Controllers
             return View(user);
 
         }
+        [HttpPost,ActionName("DeleteEmployee")]
+        public ActionResult DeleteEmployeeConfirmed(int id)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+            User user = AdminEntity.Users.Find(id);
+            AdminEntity.Users.Remove(user);
+            AdminEntity.SaveChanges();
+            return RedirectToAction("Employees");
 
+        }
         public ActionResult Books()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             var books = from b in AdminEntity.Books
                         select b;
             return View(books.ToList());
         }
+
+        public ActionResult EditBooks(int? id)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+            if (id == null)
+            {
+                return  new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = AdminEntity.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Book_ID,title,author,publisher,category,edition,NoOfpages,NoOfCopies,Available,shelfNo,arrivedDate")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                AdminEntity.Entry(book).State = EntityState.Modified;
+                AdminEntity.SaveChanges();
+                return RedirectToAction("Books");
+            }
+            return View(book);
+        }
+
+        public ActionResult DeleteBook(int? id)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Book book = AdminEntity.Books.Find(id);
+            if (book == null)
+            {
+                return HttpNotFound();
+            }
+            return View(book);
+        }
+
+        [HttpPost, ActionName("DeleteBook")]
+        public ActionResult BookDeleteConfirmed(int id)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+            Book book = AdminEntity.Books.Find(id);
+            AdminEntity.Books.Remove(book);
+            AdminEntity.SaveChanges();
+          return RedirectToAction("Books");
+        }
+
+        public ActionResult CreateBook()
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateBook([Bind(Include = "Book_ID,title,author,publisher,category,edition,NoOfpages,NoOfCopies,Available,shelfNo,arrivedDate")] Book book)
+        {
+            if (ModelState.IsValid)
+            {
+                AdminEntity.Books.Add(book);
+                AdminEntity.SaveChanges();
+                return RedirectToAction("Books");
+            }
+
+            return View(book);
+        }
+
+        public ActionResult Members()
+        {
+            return View(AdminEntity.Members.ToList());
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = AdminEntity.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
+        {
+            if (ModelState.IsValid)
+            {
+                AdminEntity.Entry(member).State = EntityState.Modified;
+                AdminEntity.SaveChanges();
+                return RedirectToAction("Members");
+            }
+            return View(member);
+        }
+
+        public ActionResult DeleteMember(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Member member = AdminEntity.Members.Find(id);
+            if (member == null)
+            {
+                return HttpNotFound();
+            }
+            return View(member);
+        }
+
+        [HttpPost, ActionName("DeleteMember")]
+        [ValidateAntiForgeryToken]
+        public ActionResult MemberDeleteConfirmed(int id)
+        {
+            Member member = AdminEntity.Members.Find(id);
+            AdminEntity.Members.Remove(member);
+            AdminEntity.SaveChanges();
+            return RedirectToAction("Members");
+        }
+        public ActionResult CreateMember()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
+        {
+            if (ModelState.IsValid)
+            {
+                AdminEntity.Members.Add(member);
+                AdminEntity.SaveChanges();
+                return RedirectToAction("Members");
+            }
+
+            return View(member);
+        }
+
     }
 }

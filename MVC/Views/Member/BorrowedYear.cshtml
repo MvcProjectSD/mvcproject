@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Book>
+
+<form method="get" action="">
+    <select name="year" id="month">
+        <option selected></option>
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+        <option value="2016">2016</option>
+    </select>
+    <input type="submit" value="Find" />
+</form>
+<br />
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>
+
+            @Html.DisplayNameFor(t => t.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.edition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.shelfNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.Available)
+        </th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(t => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.author)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.category)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.edition)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.shelfNo)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.Available)
+            </td>
+
+        </tr>
+    }
+</table>
+
+
+
+
