@@ -60,9 +60,14 @@ namespace MVC.Controllers
                             var AdminID = (from data in objentity.Users
                                            where data.User_ID == h.User_ID
                                            select data);
+
+                            Session["type"] = AdminID.Select(X => X.employeeType).FirstOrDefault();
+                            Session["user_id"] = AdminID.Select(X => X.User_ID).FirstOrDefault();
+
+
                             foreach (var n in AdminID)
                             {
-                                return RedirectToAction("profile Admin", "Admin", new { id = n.User_ID });
+                                return RedirectToAction("profile", "Admin", new { id = n.User_ID });
                             }
                             break;
 
@@ -72,6 +77,12 @@ namespace MVC.Controllers
                             var EmployeeID = (from data in objentity.Users
                                             where data.User_ID == h.User_ID
                                             select data);
+
+
+                            Session["type"] = EmployeeID.Select(X => X.employeeType).FirstOrDefault();
+                            Session["user_id"] = EmployeeID.Select(X => X.User_ID).FirstOrDefault();
+
+
                             foreach (var n in EmployeeID)
                             {
                                 return RedirectToAction("profile", "Employee", new { id = n.User_ID });
@@ -85,6 +96,10 @@ namespace MVC.Controllers
                             var MemberID = (from data in objentity.Users
                                             where data.User_ID == h.User_ID
                                             select data);
+
+
+                            Session["type"] = MemberID.Select(X => X.employeeType).FirstOrDefault();
+                            Session["user_id"] = MemberID.Select(X => X.User_ID).FirstOrDefault();
 
                             foreach (var n in MemberID)
                             {

@@ -11,6 +11,21 @@
 
 </form>
 
+<br />
+<br/>
+
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+     <th>  @Html.ActionLink("Show today returned Book ", "TodayReturnBook") </th>
+        <th>  @Html.ActionLink("Show late returned Book ", "LateReturnBook") </th>
+
+        <th>   @Html.ActionLink("New Arrived Books", "NewArrivedBooks")</th>
+
+
+</tr>
+</table>
+
 
 <table class="table">
     <tr>
@@ -82,5 +97,3 @@
     }
 
 </table>
-@Html.ActionLink("Show today returned Book ", "TodayReturnBook") 
-@Html.ActionLink("Show late returned Book ", "LateReturnBook") 

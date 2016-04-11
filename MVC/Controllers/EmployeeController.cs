@@ -12,10 +12,11 @@ namespace MVC.Controllers
     {
         MVCProjectEntities EmployeeEntity = new MVCProjectEntities();
 
-        // GET: Employee
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            User employee = EmployeeEntity.Users.Find(Session["user_id"]);
+            return View(employee);
         }
 
         public ActionResult profile(int id)
@@ -158,7 +159,7 @@ namespace MVC.Controllers
         }
 
 
-        //Books
+        // Books
         public ActionResult AllBooks(string name)
         {
             var _objuserdetail = (from data in EmployeeEntity.Books select data);
@@ -171,6 +172,36 @@ namespace MVC.Controllers
                 return View(_objuserdetail.ToList());
             }
         }
+
+        //public ActionResult AllBooks(string typeOfSearch)
+        //{
+        //    List<SelectListItem> li = new List<SelectListItem>();
+        //    li.Add(new SelectListItem { Text = "Search by", Value = "0" });
+        //    li.Add(new SelectListItem { Text = "cultural", Value = "1" });
+        //    li.Add(new SelectListItem { Text = "Politician", Value = "2" });
+
+        //    ViewData["typeOfSearch"] = li;
+
+
+        //    var _objuserdetail = (from data in EmployeeEntity.Books select data);
+        //    if (!string.IsNullOrEmpty(typeOfSearch))
+        //    {
+        //        if (typeOfSearch == "1")
+        //            return View(_objuserdetail.Where(b => b.category.ToLower().Contains(typeOfSearch).ToList());
+        //        else if (typeOfSearch == "2")
+        //            return View(_objuserdetail.Where(b => b.category.ToLower().Contains("Politician")).ToList());
+        //        else
+        //            return View(EmployeeEntity.Books.ToList());
+
+        //    }
+        //    else
+        //    {
+        //        return View(_objuserdetail.ToList());
+        //    }
+        //}
+
+
+
         public ActionResult TodayReturnBook()
         {
             var today = EmployeeEntity.todayReturnedBook();
@@ -210,7 +241,7 @@ namespace MVC.Controllers
 
         public ActionResult DeleteReadingBook(int Id)
         {
-            
+
             EmployeeEntity.ReadingBooks.Remove(EmployeeEntity.ReadingBooks.Find(Id));
             EmployeeEntity.SaveChanges();
             return RedirectToAction("Details");
@@ -220,8 +251,8 @@ namespace MVC.Controllers
         public ActionResult EditReadingBook(int Id)
         {
 
-          ReadingBook read=EmployeeEntity.ReadingBooks.Find(Id);
-           return View(read);
+            ReadingBook read = EmployeeEntity.ReadingBooks.Find(Id);
+            return View(read);
 
         }
         [HttpPost]
@@ -233,6 +264,49 @@ namespace MVC.Controllers
             EmployeeEntity.SaveChanges();
             return RedirectToAction("Details");
 
+        }
+
+        [HttpGet]
+        public ActionResult logout()
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            Session["username"] = null;
+            Session["type"] = null;
+            Session["user_id"] = null;
+
+            return RedirectToAction("SignIn", "Login");
+        }
+
+
+        [HttpGet]
+        public ActionResult NewArrivedBooks(string search)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            DateTime pre = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
+
+            if (search == null || search == string.Empty)
+            {
+
+                var result = from B in EmployeeEntity.Books
+                             where B.arrivedDate >= pre & B.arrivedDate <= DateTime.Now
+                             select B;
+                return View(result.ToList());
+            }
+            else
+            {
+                var result = from B in EmployeeEntity.Books
+                             where B.arrivedDate >= pre & B.arrivedDate <= DateTime.Now & B.category.ToLower() == search.ToLower()
+                             select B;
+                return View(result.ToList());
+            }
         }
 
     }

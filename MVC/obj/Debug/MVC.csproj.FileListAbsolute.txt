@@ -269,7 +269,6 @@ D:\mvcproject\MVC\bin\Microsoft.Owin.Security.OAuth.xml
 D:\mvcproject\MVC\bin\Microsoft.Owin.Security.Google.xml
 D:\mvcproject\MVC\bin\Microsoft.Owin.Security.Twitter.xml
 D:\mvcproject\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-D:\mvcproject\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
 D:\mvcproject\MVC\obj\Debug\MVC.dll
 D:\mvcproject\MVC\obj\Debug\MVC.pdb
 C:\mvcproject\MVC\bin\MVC.dll.config
@@ -327,3 +326,4 @@ C:\mvcproject\MVC\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\mvcproject\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache
 C:\mvcproject\MVC\obj\Debug\MVC.dll
 C:\mvcproject\MVC\obj\Debug\MVC.pdb
+D:\mvcproject\MVC\obj\Debug\MVC.csprojResolveAssemblyReference.cache

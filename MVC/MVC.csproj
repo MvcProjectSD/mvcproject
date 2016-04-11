@@ -374,6 +374,8 @@
     <Content Include="Views\MainAdmin\profile.cshtml" />
     <Content Include="Views\MainAdmin\ChangePassword.cshtml" />
     <Content Include="Views\MainAdmin\CompleteProfile.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\NewArrivedBooks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
