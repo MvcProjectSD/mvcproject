@@ -161,6 +161,9 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="borrowed_Result.cs">
+      <DependentUpon>LibraryEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Book.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
@@ -168,7 +171,6 @@
     <Compile Include="borrowBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainAdminController.cs" />
@@ -373,20 +375,11 @@
     <Content Include="Views\MainAdmin\NewArrivedBooks.cshtml" />
     <Content Include="Views\MainAdmin\Search.cshtml" />
     <Content Include="Views\MainAdmin\profile.cshtml" />
-    <Content Include="Views\Admin\Profile.cshtml" />
-    <Content Include="Views\Admin\EditProfile.cshtml" />
-    <Content Include="Views\Admin\Employees.cshtml" />
-    <Content Include="Views\Admin\EditEmployee.cshtml" />
-    <Content Include="Views\Admin\Books.cshtml" />
-    <Content Include="Views\Admin\EditBooks.cshtml" />
-    <Content Include="Views\Admin\DeleteEmployee.cshtml" />
-    <Content Include="Views\Admin\CreateEmployee.cshtml" />
-    <Content Include="Views\Admin\DeleteBook.cshtml" />
-    <Content Include="Views\Admin\CreateBook.cshtml" />
-    <Content Include="Views\Admin\Members.cshtml" />
-    <Content Include="Views\Admin\EditMember.cshtml" />
-    <Content Include="Views\Admin\DeleteMember.cshtml" />
-    <Content Include="Views\Admin\CreateMember.cshtml" />
+    <Content Include="Views\MainAdmin\ChangePassword.cshtml" />
+    <Content Include="Views\MainAdmin\CompleteProfile.cshtml" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\Employee\NewArrivedBooks.cshtml" />
+    <Content Include="Views\Employee\borrowThisBook.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,6 +1,8 @@
 ﻿@model IEnumerable<Book>
 @{
     ViewBag.Title = "AllBooks";
+
+   
 }
 
 <h2>All Books</h2>
@@ -35,5 +37,11 @@
             <td>@Html.DisplayFor(p => item.shelfNo)</td>
             <td>@Html.DisplayFor(p => item.arrivedDate)</td>
         </tr>
+
     }
+
 </table>
+   
+
+
+    
