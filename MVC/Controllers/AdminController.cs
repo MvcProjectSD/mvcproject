@@ -229,7 +229,7 @@ namespace MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Book_ID,title,author,publisher,category,edition,NoOfpages,NoOfCopies,Available,shelfNo,arrivedDate")] Book book)
+        public ActionResult EditBooks([Bind(Include = "Book_ID,title,author,publisher,category,edition,NoOfpages,NoOfCopies,Available,shelfNo,arrivedDate")] Book book)
         {
             if (ModelState.IsValid)
             {
@@ -284,8 +284,13 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult CreateBook([Bind(Include = "Book_ID,title,author,publisher,category,edition,NoOfpages,NoOfCopies,Available,shelfNo,arrivedDate")] Book book)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             if (ModelState.IsValid)
             {
+                book.Book_ID = AdminEntity.Books.Select(b=>b.Book_ID).Max() + 1;
                 AdminEntity.Books.Add(book);
                 AdminEntity.SaveChanges();
                 return RedirectToAction("Books");
@@ -296,11 +301,19 @@ namespace MVC.Controllers
 
         public ActionResult Members()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             return View(AdminEntity.Members.ToList());
         }
 
-        public ActionResult Edit(int? id)
+        public ActionResult EditMember(int? id)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -315,8 +328,12 @@ namespace MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
+        public ActionResult EditMember([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             if (ModelState.IsValid)
             {
                 AdminEntity.Entry(member).State = EntityState.Modified;
@@ -328,6 +345,10 @@ namespace MVC.Controllers
 
         public ActionResult DeleteMember(int? id)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -344,6 +365,10 @@ namespace MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult MemberDeleteConfirmed(int id)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             Member member = AdminEntity.Members.Find(id);
             AdminEntity.Members.Remove(member);
             AdminEntity.SaveChanges();
@@ -351,14 +376,23 @@ namespace MVC.Controllers
         }
         public ActionResult CreateMember()
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
+        public ActionResult CreateMember([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
         {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
             if (ModelState.IsValid)
             {
+                member.Member_ID = AdminEntity.Members.Select(m => m.Member_ID).Max() + 1;
                 AdminEntity.Members.Add(member);
                 AdminEntity.SaveChanges();
                 return RedirectToAction("Members");
