@@ -119,5 +119,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="borrowed" FunctionName="MVCProjectModel.Store.borrowed">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MVCProjectModel.borrowed_Result">
+          <ScalarProperty Name="noOFavalible_copies" ColumnName="noOFavalible_copies" />
+          <ScalarProperty Name="noOFborrowed" ColumnName="noOFborrowed" />
+          <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

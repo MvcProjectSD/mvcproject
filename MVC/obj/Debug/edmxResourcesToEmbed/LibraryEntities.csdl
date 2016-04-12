@@ -230,6 +230,7 @@
       <Parameter Name="year" Mode="In" Type="Int32" />
     </FunctionImport>
     <FunctionImport Name="todayReturnedBook" ReturnType="Collection(MVCProjectModel.todayReturnedBook_Result)" />
+    <FunctionImport Name="borrowed" ReturnType="Collection(MVCProjectModel.borrowed_Result)" />
   </EntityContainer>
   <EntityType Name="Login">
     <Key>
@@ -264,5 +265,10 @@
     <Property Type="Int32" Name="User_ID" Nullable="false" />
     <Property Type="String" Name="title" Nullable="false" MaxLength="50" />
     <Property Type="String" Name="FullName" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="borrowed_Result">
+    <Property Type="Int32" Name="noOFavalible_copies" Nullable="true" />
+    <Property Type="Int32" Name="noOFborrowed" Nullable="true" />
+    <Property Type="Int32" Name="Book_ID" Nullable="false" />
   </ComplexType>
 </Schema>

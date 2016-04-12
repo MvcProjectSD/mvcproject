@@ -11,11 +11,12 @@ namespace MVC.Controllers
     public class EmployeeController : Controller
     {
         MVCProjectEntities EmployeeEntity = new MVCProjectEntities();
-
-        // GET: Employee
+        static int BookID;
+        [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            User employee = EmployeeEntity.Users.Find(Session["user_id"]);
+            return View(employee);
         }
 
         public ActionResult profile(int id)
@@ -158,24 +159,48 @@ namespace MVC.Controllers
         }
 
 
-        //Books
-        public ActionResult AllBooks(string name)
+        // Books
+        public ActionResult AllBooks(string name, string typeOfSearch)
         {
+            List<SelectListItem> li = new List<SelectListItem>();
+            li.Add(new SelectListItem { Text = "Search by", Value = "0" });
+            li.Add(new SelectListItem { Text = "Category", Value = "1" });
+            li.Add(new SelectListItem { Text = "Publisher", Value = "2" });
+            li.Add(new SelectListItem { Text = "Publishing date", Value = "3" });
+            li.Add(new SelectListItem { Text = "Author", Value = "4" });
+
+
+            ViewData["typeOfSearch"] = li;
             var _objuserdetail = (from data in EmployeeEntity.Books select data);
             if (!string.IsNullOrEmpty(name))
             {
-                return View(_objuserdetail.Where(b => b.category.ToLower().Contains(name)).ToList());
+                if (typeOfSearch == "1")
+
+
+                    return View(_objuserdetail.Where(b => b.category.ToLower().Contains(name)).ToList());
+                else if (typeOfSearch == "2")
+                    return View(_objuserdetail.Where(b => b.publisher.ToLower().Contains(name)).ToList());
+                else if (typeOfSearch == "3")
+                    return View(_objuserdetail.Where(b => b.Publishing_date == DateTime.Parse(name)).ToList());
+                else if (typeOfSearch == "4")
+                    return View(_objuserdetail.Where(b => b.author.ToLower().Contains(name)).ToList());
+
+                else
+                    return View(_objuserdetail.ToList());
             }
             else
             {
                 return View(_objuserdetail.ToList());
             }
         }
-      /*  public ActionResult TodayReturnBook()
+
+
+
+        public ActionResult TodayReturnBook()
         {
             var today = EmployeeEntity.todayReturnedBook();
             return View(today.ToList());
-        }*/
+        }
         public ActionResult LateReturnBook()
         {
             var _objuserdetail = (from data in EmployeeEntity.borrowBooks
@@ -210,7 +235,7 @@ namespace MVC.Controllers
 
         public ActionResult DeleteReadingBook(int Id)
         {
-            
+
             EmployeeEntity.ReadingBooks.Remove(EmployeeEntity.ReadingBooks.Find(Id));
             EmployeeEntity.SaveChanges();
             return RedirectToAction("Details");
@@ -220,8 +245,8 @@ namespace MVC.Controllers
         public ActionResult EditReadingBook(int Id)
         {
 
-          ReadingBook read=EmployeeEntity.ReadingBooks.Find(Id);
-           return View(read);
+            ReadingBook read = EmployeeEntity.ReadingBooks.Find(Id);
+            return View(read);
 
         }
         [HttpPost]
@@ -229,9 +254,115 @@ namespace MVC.Controllers
         {
 
             EmployeeEntity.ReadingBooks.Remove(EmployeeEntity.ReadingBooks.Find(read.Reading_ID));
+
             EmployeeEntity.ReadingBooks.Add(read);
             EmployeeEntity.SaveChanges();
             return RedirectToAction("Details");
+
+        }
+
+        [HttpGet]
+        public ActionResult logout()
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            Session["username"] = null;
+            Session["type"] = null;
+            Session["user_id"] = null;
+
+            return RedirectToAction("SignIn", "Login");
+        }
+
+
+        [HttpGet]
+        public ActionResult NewArrivedBooks(string search)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            DateTime pre = DateTime.Now.AddDays(-(int)DateTime.Now.DayOfWeek - 6);
+
+            if (search == null || search == string.Empty)
+            {
+
+                var result = from B in EmployeeEntity.Books
+                             where B.arrivedDate >= pre & B.arrivedDate <= DateTime.Now
+                             select B;
+                return View(result.ToList());
+            }
+            else
+            {
+                var result = from B in EmployeeEntity.Books
+                             where B.arrivedDate >= pre & B.arrivedDate <= DateTime.Now & B.category.ToLower() == search.ToLower()
+                             select B;
+                return View(result.ToList());
+            }
+        }
+        public ActionResult borrowThisBook(int id)
+        {
+
+            BookID = id;
+           
+            var borow = (from b in EmployeeEntity.borrowBooks
+                         where b.Book_ID == id
+                         select b).ToList();
+            var book= (from b in EmployeeEntity.Books
+                       where b.Book_ID == id
+                       select b).ToList();
+
+
+            foreach (var d in book)
+            {
+                if (d.NoOfCopies - borow.Count > 1)
+                {
+                    return View();
+                }
+                else
+                {
+                    ViewBag.Message = 0;
+                     
+
+                }
+
+            }
+                return RedirectToAction("AllBooks");
+
+
+        }
+        [HttpPost]
+        public ActionResult borrowThisBook(borrowBook br)
+        {
+            br.Book_ID = BookID;
+            int max_id = (EmployeeEntity.borrowBooks.OrderByDescending(u => u.Borrow_ID).FirstOrDefault().Borrow_ID);
+            br.Borrow_ID = max_id + 1;
+            var bdate = br.Borrow_date;
+            var rdate=  br.return_date;
+
+
+            var memb = (from data in EmployeeEntity.borrowBooks
+                       where data.Member_ID == br.Member_ID & data.ActualReturnDate == null &data.Book_ID==BookID
+                       select data).ToList();
+
+            if ((rdate - bdate).Days <= 20)
+            {
+                if (memb.Count == 0)
+                {
+                    EmployeeEntity.borrowBooks.Add(br);
+                    EmployeeEntity.SaveChanges();
+                }
+            }
+            else
+            {
+               // string myString = "duration musn't greater than 20 day";
+              //  return View((object)myString);
+                return RedirectToAction("borrowThisBook");
+            }
+            return RedirectToAction("AllBooks");
 
         }
 

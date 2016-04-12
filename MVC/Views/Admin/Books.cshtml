@@ -77,11 +77,15 @@
                 @Html.DisplayFor(modelItem => item.shelfNo)
             </td>
             <td>
-                @Html.ActionLink("Edit", "EditBooks", new { id = item.Book_ID })
-                @Html.ActionLink("Delete", "DeleteBook", new { id = item.Book_ID })
+                @Html.ActionLink("Edit", "EditBooks", new {id = item.Book_ID})
+                @Html.ActionLink("Delete", "DeleteBook", new {id = item.Book_ID})
             </td>
 
         </tr>
     }
 
 </table>
+
+<br />
+
+
