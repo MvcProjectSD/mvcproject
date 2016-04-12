@@ -64,9 +64,9 @@ namespace MVC
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("most_reading_books_by_year", yearParameter);
         }
     
-    /*   public virtual ObjectResult<todayReturnedBook_Result> todayReturnedBook()
+        public virtual ObjectResult<todayReturnedBook_Result> todayReturnedBook()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<todayReturnedBook_Result>("todayReturnedBook");
-        }*/
+        }
     }
 }

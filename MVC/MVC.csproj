@@ -186,8 +186,12 @@
     <Compile Include="Models\currentbook.cs" />
     <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
-    <Compile Include="Models\Memlog.cs" />
+    <Compile Include="Models\memlog.cs" />
+    <Compile Include="Models\wishbooks.cs" />
     <Compile Include="ReadingBook.cs">
+      <DependentUpon>LibraryEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="todayReturnedBook_Result.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
@@ -372,6 +376,14 @@
     <Content Include="Views\Member\CurrentBorrowed.cshtml" />
     <Content Include="Views\Member\BorrowedMonth.cshtml" />
     <Content Include="Views\Member\BorrowedYear.cshtml" />
+    <Content Include="Views\Member\FindBook.cshtml" />
+    <Content Include="Views\Member\search.cshtml" />
+    <Content Include="Views\Member\FindYear.cshtml" />
+    <Content Include="Views\Member\FindCategory.cshtml" />
+    <Content Include="Views\Member\FindPublisher.cshtml" />
+    <Content Include="Views\Member\FindAuthor.cshtml" />
+    <Content Include="Views\Member\AvailableBooks.cshtml" />
+    <Content Include="Views\Member\WishLists.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

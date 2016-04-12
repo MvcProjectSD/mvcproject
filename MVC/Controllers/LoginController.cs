@@ -79,16 +79,19 @@ namespace MVC.Controllers
                             break;
 
                         case 4:
-
                             Session["username"] = _objuserloginmodel.UserName;
-                            Session["type"] = "Member";
-                            var MemberID = (from data in objentity.Users
-                                            where data.User_ID == h.User_ID
+                            
+                            var MemberID = (from data in objentity.Members
+                                            where data.Member_ID == h.User_ID
                                             select data);
+                            Session["type"] = 4;
+                            Session["user_id"] = MemberID.Select(X => X.Member_ID).FirstOrDefault();
 
                             foreach (var n in MemberID)
                             {
-                                return RedirectToAction("Index", "Member", new { id = n.User_ID });
+                             
+                                return RedirectToAction("Index", "Member", new { id = n.Member_ID });
+                                
                             }
                             break;
 

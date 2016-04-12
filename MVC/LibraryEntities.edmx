@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="Book_ID" />
@@ -20,6 +20,7 @@
           <Property Name="Available" Type="bit" Nullable="false" />
           <Property Name="shelfNo" Type="int" Nullable="false" />
           <Property Name="arrivedDate" Type="date" />
+          <Property Name="Publishing_date" Type="date" />
         </EntityType>
         <EntityType Name="borrowBook">
           <Key>
@@ -55,7 +56,7 @@
           <Key>
             <PropertyRef Name="Member_ID" />
           </Key>
-          <Property Name="Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Member_ID" Type="int" Nullable="false" />
           <Property Name="FullName" Type="varchar(max)" Nullable="false" />
           <Property Name="Email" Type="varchar(max)" Nullable="false" />
           <Property Name="Address" Type="varchar(max)" />
@@ -91,7 +92,7 @@
           <Key>
             <PropertyRef Name="Wish_ID" />
           </Key>
-          <Property Name="Wish_ID" Type="int" Nullable="false" />
+          <Property Name="Wish_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Book_ID" Type="int" Nullable="false" />
           <Property Name="Member_ID" Type="int" Nullable="false" />
         </EntityType>
@@ -264,6 +265,7 @@
           <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBook_Book" FromRole="Book" ToRole="ReadingBook" />
           <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Book" FromRole="Book" ToRole="WishList" />
           <Property Name="arrivedDate" Type="DateTime" Precision="0" />
+          <Property Name="Publishing_date" Type="DateTime" Precision="0" />
         </EntityType>
         <EntityType Name="borrowBook">
           <Key>
@@ -519,6 +521,7 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="MVCProjectModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Publishing_date" ColumnName="Publishing_date" />
                 <ScalarProperty Name="arrivedDate" ColumnName="arrivedDate" />
                 <ScalarProperty Name="Book_ID" ColumnName="Book_ID" />
                 <ScalarProperty Name="title" ColumnName="title" />

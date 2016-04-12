@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="MVCProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Book">
     <Key>
       <PropertyRef Name="Book_ID" />
@@ -15,6 +15,7 @@
     <Property Name="Available" Type="bit" Nullable="false" />
     <Property Name="shelfNo" Type="int" Nullable="false" />
     <Property Name="arrivedDate" Type="date" />
+    <Property Name="Publishing_date" Type="date" />
   </EntityType>
   <EntityType Name="borrowBook">
     <Key>
@@ -50,7 +51,7 @@
     <Key>
       <PropertyRef Name="Member_ID" />
     </Key>
-    <Property Name="Member_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Member_ID" Type="int" Nullable="false" />
     <Property Name="FullName" Type="varchar(max)" Nullable="false" />
     <Property Name="Email" Type="varchar(max)" Nullable="false" />
     <Property Name="Address" Type="varchar(max)" />
@@ -86,7 +87,7 @@
     <Key>
       <PropertyRef Name="Wish_ID" />
     </Key>
-    <Property Name="Wish_ID" Type="int" Nullable="false" />
+    <Property Name="Wish_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Book_ID" Type="int" Nullable="false" />
     <Property Name="Member_ID" Type="int" Nullable="false" />
   </EntityType>

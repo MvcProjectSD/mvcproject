@@ -18,6 +18,7 @@
     <NavigationProperty Name="ReadingBooks" Relationship="Self.FK_ReadingBook_Book" FromRole="Book" ToRole="ReadingBook" />
     <NavigationProperty Name="WishLists" Relationship="Self.FK_WishList_Book" FromRole="Book" ToRole="WishList" />
     <Property Name="arrivedDate" Type="DateTime" Precision="0" />
+    <Property Name="Publishing_date" Type="DateTime" Precision="0" />
   </EntityType>
   <EntityType Name="borrowBook">
     <Key>
