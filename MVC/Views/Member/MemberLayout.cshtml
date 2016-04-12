@@ -26,6 +26,9 @@
                             <li><a class="dribbble" href="#" target="_blank"></a></li>
                             <li><a class="vimeo" href="#" target="_blank"></a></li>
                         </ul>
+                        <div>
+                          @Html.ActionLink("LogOut", "logout")
+                        </div>
                     </div>
                     <div class="clear"></div>
                 </div>
@@ -36,15 +39,19 @@
                             <li>@Html.ActionLink("Update Profile", "UpdateProfile", new { id = @ViewBag.Message })</li>
                             <li>@Html.ActionLink("New Books", "NewBooks", new { id = @ViewBag.Message })</li>
                             <li class='has-sub'>@Html.ActionLink("Reading Books", "ReadingBooks", new { id = @ViewBag.Message })</li>
-                            <li class='last'>@Html.ActionLink("Borrowed Books", "BorrowedBooks", new { id = @ViewBag.Message })</li>
+                            <li class='has-sub'>@Html.ActionLink("Borrowed Books", "BorrowedBooks", new { id = @ViewBag.Message })</li>
+                            <li class='has-sub'>@Html.ActionLink("Search", "search", new { id = @ViewBag.Message })</li>
+                            <li class='last'>@Html.ActionLink("WishList", "WishLists", new { id = @ViewBag.Message })</li>
                             <div class="clear"></div>
                         </ul>
                     </div><br />
                     <div class="search">
-                        <form>
-                            <input type="text" value="" placeholder="Search for a book">
-                            <input type="submit" value=""> 
-                        </form>
+                       @using (Html.BeginForm("FindBook", "Member", FormMethod.Get))
+                       {
+                       
+                           <input type="text" name="name"  placeholder="Search for a book"/>
+                        <input type="submit" value="" />
+                       }
                     </div>
                     <div class="clear"></div>
                 </div>

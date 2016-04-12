@@ -12,6 +12,9 @@
 <th>
     @Html.DisplayNameFor(t => t.borrowedbook.Borrow_date)
 </th>
+        <th>
+            @Html.DisplayNameFor(t => t.borrowedbook.return_date)
+        </th>
 
     </tr>
     @foreach (var item in Model)
@@ -26,8 +29,11 @@
             </td>
  
             <td>
-                @Html.DisplayFor(t => item.borrowedbook.Borrow_date)
+              @Html.DisplayFor(t => item.borrowedbook.Borrow_date.Day)/@Html.DisplayFor(t => item.borrowedbook.Borrow_date.Month)/@Html.DisplayFor(t => item.borrowedbook.Borrow_date.Year)
             </td>
+            <td>
+                @Html.DisplayFor(t => item.borrowedbook.return_date.Day)/@Html.DisplayFor(t => item.borrowedbook.return_date.Month)/@Html.DisplayFor(t => item.borrowedbook.return_date.Year)
+                </td>
         </tr>
     }
 </table>

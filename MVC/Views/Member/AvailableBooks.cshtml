@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Book>
+
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>@Html.ActionLink("Find by year", "FindYear")</th>
+        <th>@Html.ActionLink("Find by Category", "FindCategory")</th>
+        <th>@Html.ActionLink("Find by Publisher", "FindPublisher")</th>
+        <th>@Html.ActionLink("Find by Author ", "FindAuthor")</th>
+        <th>@Html.ActionLink("Available Books", "AvailableBooks")</th>
+    </tr>
+</table>
+@using (Html.BeginForm("WishList", "Member", FormMethod.Post))
+{
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(t => t.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.author)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.publisher)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.edition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.shelfNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.arrivedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(t => t.Available)
+        </th>
+        <th>Add to Wishlist</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(t => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.author)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.publisher)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.category)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.edition)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.shelfNo)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.arrivedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(t => item.Available)
+            </td>
+            <td>
+                @Html.ActionLink("Add", "WishList", new  {id = item.Book_ID })
+
+            </td>
+        </tr>
+    }
+</table>
+}
+
+
+
