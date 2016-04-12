@@ -95,10 +95,12 @@ namespace MVC.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateMember([Bind(Include = "Member_ID,FullName,Email,Address,PhoneNumber")] Member member)
+        public ActionResult CreateMember(Member member)
         {
             if (ModelState.IsValid)
             {
+                int max_id = (EmployeeEntity.Members.OrderByDescending(u => u.Member_ID).FirstOrDefault().Member_ID);
+                member.Member_ID = max_id + 1;
                 EmployeeEntity.Members.Add(member);
                 EmployeeEntity.SaveChanges();
                 return RedirectToAction("Members");
@@ -171,6 +173,7 @@ namespace MVC.Controllers
 
 
             ViewData["typeOfSearch"] = li;
+            
             var _objuserdetail = (from data in EmployeeEntity.Books select data);
             if (!string.IsNullOrEmpty(name))
             {
@@ -213,12 +216,46 @@ namespace MVC.Controllers
         [HttpGet]
         public ActionResult ReadingBooks()
         {
+            List<SelectListItem> BookIdlist = new List<SelectListItem>();
+            List<SelectListItem> MemberIdlist = new List<SelectListItem>();
+
+
+            var Bookid = (from data in EmployeeEntity.Books
+                      select data.Book_ID).ToList();
+
+            var Memberid = (from data in EmployeeEntity.Members
+                          select data.Member_ID).ToList();
+
+            foreach (var i in Bookid)
+            {
+             
+
+                BookIdlist.Add(new SelectListItem { Text =i.ToString(), Value = i.ToString() });
+              
+          
+            }
+            foreach (var k in Memberid)
+            {
+               
+
+                MemberIdlist.Add(new SelectListItem { Text = k.ToString(), Value = k.ToString() });
+            
+
+            }
+
+            ViewData["BookID"] = BookIdlist;
+            ViewData["Member_ID"] = MemberIdlist;
+
             return View();
 
         }
         [HttpPost]
-        public ActionResult ReadingBooks(ReadingBook read)
+        public ActionResult ReadingBooks(ReadingBook read,string BookID, string Member_ID)
         {
+            read.Book_ID = Int32.Parse(BookID);
+            read.Member_ID = Int32.Parse(Member_ID);
+            int max_id = (EmployeeEntity.ReadingBooks.OrderByDescending(u => u.Reading_ID).FirstOrDefault().Reading_ID);
+            read.Reading_ID = max_id + 1;
             EmployeeEntity.ReadingBooks.Add(read);
             EmployeeEntity.SaveChanges();
 
@@ -305,7 +342,29 @@ namespace MVC.Controllers
         }
         public ActionResult borrowThisBook(int id)
         {
+            List<SelectListItem> MemberIdlist = new List<SelectListItem>();
+            var Memberid = (from data in EmployeeEntity.Members
+                            select data.Member_ID).ToList();
+            foreach (var k in Memberid)
+            {
 
+
+                MemberIdlist.Add(new SelectListItem { Text = k.ToString(), Value = k.ToString() });
+
+            }
+            ViewData["MemberID"] = MemberIdlist;
+            
+                 List<SelectListItem> UserIdlist = new List<SelectListItem>();
+            var Userid = (from data in EmployeeEntity.Members
+                            select data.Member_ID).ToList();
+            foreach (var k in Userid)
+            {
+
+
+                UserIdlist.Add(new SelectListItem { Text = k.ToString(), Value = k.ToString() });
+
+            }
+            ViewData["UserID"] = UserIdlist;
             BookID = id;
            
             var borow = (from b in EmployeeEntity.borrowBooks
@@ -335,11 +394,15 @@ namespace MVC.Controllers
 
         }
         [HttpPost]
-        public ActionResult borrowThisBook(borrowBook br)
+        public ActionResult borrowThisBook(borrowBook br,string MemberID,string UserID)
         {
+           
+
             br.Book_ID = BookID;
             int max_id = (EmployeeEntity.borrowBooks.OrderByDescending(u => u.Borrow_ID).FirstOrDefault().Borrow_ID);
             br.Borrow_ID = max_id + 1;
+            br.Member_ID =Int32.Parse( MemberID);
+            br.User_ID = Int32.Parse(UserID);
             var bdate = br.Borrow_date;
             var rdate=  br.return_date;
 
@@ -358,8 +421,7 @@ namespace MVC.Controllers
             }
             else
             {
-               // string myString = "duration musn't greater than 20 day";
-              //  return View((object)myString);
+           
                 return RedirectToAction("borrowThisBook");
             }
             return RedirectToAction("AllBooks");

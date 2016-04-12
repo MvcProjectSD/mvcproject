@@ -6,12 +6,14 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace MVC
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,26 +24,31 @@ namespace MVC
             this.WishLists = new HashSet<WishList>();
         }
     
+        
         public int Book_ID { get; set; }
-        [Display(Name = "Book Name  ")]
+        [Required]
         public string title { get; set; }
-        [Display(Name = "Author  ")]
+        [Required]
         public string author { get; set; }
-        [Display(Name = "Publisher  ")]
+        [Required]
         public string publisher { get; set; }
-        [Display(Name = "Category  ")]
+        [Required]
         public string category { get; set; }
-        [Display(Name = "Edition  ")]
+        [Required]
         public Nullable<int> edition { get; set; }
+        [Required]
         public Nullable<int> NoOfpages { get; set; }
-        [Display(Name = "Number Of Pages  ")]
+        [Required]
         public int NoOfCopies { get; set; }
+        [Required]
         public bool Available { get; set; }
-        [Display(Name = "Shelf Number  ")]
+        [Required]
         public int shelfNo { get; set; }
+        [Required]
         public Nullable<System.DateTime> arrivedDate { get; set; }
+        [Required]
         public Nullable<System.DateTime> Publishing_date { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<borrowBook> borrowBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

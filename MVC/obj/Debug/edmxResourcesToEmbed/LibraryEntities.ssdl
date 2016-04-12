@@ -87,7 +87,7 @@
     <Key>
       <PropertyRef Name="Wish_ID" />
     </Key>
-    <Property Name="Wish_ID" Type="int" Nullable="false" />
+    <Property Name="Wish_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Book_ID" Type="int" Nullable="false" />
     <Property Name="Member_ID" Type="int" Nullable="false" />
   </EntityType>

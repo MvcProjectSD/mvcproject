@@ -11,7 +11,7 @@ namespace MVC
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class User
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,13 +21,20 @@ namespace MVC
         }
     
         public int User_ID { get; set; }
+        [Required]
         public string firstname { get; set; }
+        [Required]
         public string middlename { get; set; }
+        [Required]
         public string lastname { get; set; }
         public byte[] Image { get; set; }
         public Nullable<System.DateTime> hiredate { get; set; }
+        [Required]
         public System.DateTime birthdate { get; set; }
+        [Required]
         public string address { get; set; }
+        [Required]
+        [Phone]
         public string phoneNo { get; set; }
         public int employeeType { get; set; }
         public Nullable<double> salary { get; set; }

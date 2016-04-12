@@ -13,45 +13,56 @@
         <h4>Member</h4>
         <hr />
         @Html.ValidationSummary(true)
+       
+            <div class="form-group">
+                @Html.DisplayNameFor(i => i.Member_ID)<br />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Member_ID, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Member_ID)
-                @Html.ValidationMessageFor(model => model.Member_ID)
-            </div>
-        </div>
+                @Html.DropDownList("MemberID", ViewData["MemberID"] as List<SelectListItem>)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Borrow_date, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Borrow_date)
-                @Html.ValidationMessageFor(model => model.Borrow_date)
-            </div>
-        </div>
+                @* @Html.LabelFor(model => model.Member_ID, new { @class = "control-label col-md-2" })*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.return_date, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.return_date)
-                @Html.ValidationMessageFor(model => model.return_date)
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.User_ID, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.User_ID)
-                @Html.ValidationMessageFor(model => model.User_ID)
-            </div>
-        </div>
+                @*<div class="col-md-10">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                    @Html.EditorFor(model => model.Member_ID)
+                    @Html.ValidationMessageFor(model => model.Member_ID)
+                </div>*@
             </div>
-        </div>
-    </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Borrow_date, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Borrow_date)
+                    @Html.ValidationMessageFor(model => model.Borrow_date)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.return_date, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.return_date)
+                    @Html.ValidationMessageFor(model => model.return_date)
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.User_ID, new { @class = "control-label col-md-2" })
+                @Html.DropDownList("UserID", ViewData["UserID"] as List<SelectListItem>)
+
+
+                @*<div class="col-md-10">
+
+                    @Html.EditorFor(model => model.User_ID)
+                    @Html.ValidationMessageFor(model => model.User_ID)
+                </div>*@
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+</div>
 
 
    
