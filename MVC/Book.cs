@@ -11,7 +11,9 @@ namespace MVC
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+
     public partial class Book
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,19 +24,31 @@ namespace MVC
             this.WishLists = new HashSet<WishList>();
         }
     
+        
         public int Book_ID { get; set; }
+        [Required]
         public string title { get; set; }
+        [Required]
         public string author { get; set; }
+        [Required]
         public string publisher { get; set; }
+        [Required]
         public string category { get; set; }
+        [Required]
         public Nullable<int> edition { get; set; }
+        [Required]
         public Nullable<int> NoOfpages { get; set; }
+        [Required]
         public int NoOfCopies { get; set; }
+        [Required]
         public bool Available { get; set; }
+        [Required]
         public int shelfNo { get; set; }
+        [Required]
         public Nullable<System.DateTime> arrivedDate { get; set; }
+        [Required]
         public Nullable<System.DateTime> Publishing_date { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<borrowBook> borrowBooks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

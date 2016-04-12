@@ -6,12 +6,12 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System.ComponentModel.DataAnnotations;
+
 namespace MVC
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Member
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -23,14 +23,15 @@ namespace MVC
         }
     
         public int Member_ID { get; set; }
-        [Display(Name = "Name : ")]
+        [Required]
         public string FullName { get; set; }
-        [Display(Name = "Email: ")]
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
-         [Display(Name = "Address : ")]
+        [Required]
         public string Address { get; set; }
-         [Display(Name = "Phone Number : ")]
-         [RegularExpression("[0-9]{11}", ErrorMessage = "Please nter correct phone number")]
+        [Required]
+        [Phone]
         public string PhoneNumber { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

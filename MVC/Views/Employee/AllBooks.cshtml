@@ -66,6 +66,9 @@
         <th>
             @Html.DisplayNameFor(model => model.shelfNo)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Publishing_date)
+        </th>
         <th>Borrow</th>
     </tr>
  
@@ -101,6 +104,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.shelfNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Publishing_date)
             </td>
             <td>
                 @Html.ActionLink("Borrow This Book", "borrowThisBook", new { id = item.Book_ID }) |

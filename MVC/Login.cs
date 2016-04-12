@@ -11,10 +11,12 @@ namespace MVC
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Login
     {
+        [Required]
         public string UserName { get; set; }
+        [Required]
         public string Password { get; set; }
         public int Type { get; set; }
         public Nullable<int> User_ID { get; set; }

@@ -11,13 +11,15 @@ namespace MVC
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class borrowBook
     {
         public int Borrow_ID { get; set; }
         public int Book_ID { get; set; }
         public int Member_ID { get; set; }
+        [Required]
         public System.DateTime Borrow_date { get; set; }
+        [Required]
         public System.DateTime return_date { get; set; }
         public Nullable<System.DateTime> ActualReturnDate { get; set; }
         public int User_ID { get; set; }
