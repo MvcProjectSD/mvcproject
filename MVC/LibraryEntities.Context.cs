@@ -68,10 +68,5 @@ namespace MVC
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<todayReturnedBook_Result>("todayReturnedBook");
         }
-    
-        public virtual ObjectResult<borrowed_Result> borrowed()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<borrowed_Result>("borrowed");
-        }
     }
 }

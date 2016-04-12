@@ -33,6 +33,15 @@ body {
 	font-family: Arial, Geneva,Helvetica, sans-serif;
 	font-size: 100%;
 }
+.home 
+{
+    font-size :25px;
+    font-family :'Times New Roman';
+
+}
+#imag {
+    width :750px;
+}
 .wrap{
 	margin:0 auto;
 	width:80%;

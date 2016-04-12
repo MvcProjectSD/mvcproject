@@ -1,0 +1,15 @@
+﻿@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Find Books</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>@Html.ActionLink("Find by year", "FindYear")</th>
+        <th>@Html.ActionLink("Find by Category", "FindCategory")</th>
+        <th>@Html.ActionLink("Find by Publisher", "FindPublisher")</th>
+        <th>@Html.ActionLink("Find by Author ", "FindAuthor")</th>
+        <th>@Html.ActionLink("Available Books", "AvailableBooks")</th>
+    </tr>
+</table>

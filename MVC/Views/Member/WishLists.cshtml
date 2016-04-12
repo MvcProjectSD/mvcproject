@@ -1,0 +1,25 @@
+﻿@model IEnumerable<MVC.Models.wishbooks>
+@{
+    ViewBag.Title = "WishLists";
+    Layout = "~/Views/Member/MemberLayout.cshtml";
+}
+
+<h2>WishList</h2>
+
+<table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(t => t.book.title)
+        </th>
+
+        </tr>
+    @foreach (var wish in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(t => wish.book.title)
+            </td>
+        </tr>
+    }
+    </table>
+
