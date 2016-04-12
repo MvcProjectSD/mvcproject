@@ -171,10 +171,11 @@
     <Compile Include="borrowBook.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\MainAdminController.cs" />
-    <Compile Include="fonts\MemberController.cs" />
+    <Compile Include="Controllers\MemberController.cs" />
     <Compile Include="EmployeeType.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
@@ -186,6 +187,7 @@
     <Compile Include="Member.cs">
       <DependentUpon>LibraryEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\currentbook.cs" />
     <Compile Include="Models\ImageToUpload.cs" />
     <Compile Include="Models\logg.cs" />
     <Compile Include="ReadingBook.cs">
@@ -239,6 +241,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\emp.png" />
     <Content Include="images\banner1.jpg" />
     <Content Include="images\banner2.jpg" />
     <Content Include="images\banner3.jpg" />
@@ -380,6 +383,35 @@
     <Content Include="Views\Employee\Index.cshtml" />
     <Content Include="Views\Employee\NewArrivedBooks.cshtml" />
     <Content Include="Views\Employee\borrowThisBook.cshtml" />
+    <Content Include="Views\Admin\Books.cshtml" />
+    <Content Include="Views\Admin\CreateBook.cshtml" />
+    <Content Include="Views\Admin\CreateEmployee.cshtml" />
+    <Content Include="Views\Admin\CreateMember.cshtml" />
+    <Content Include="Views\Admin\DeleteBook.cshtml" />
+    <Content Include="Views\Admin\DeleteEmployee.cshtml" />
+    <Content Include="Views\Admin\DeleteMember.cshtml" />
+    <Content Include="Views\Admin\EditBooks.cshtml" />
+    <Content Include="Views\Admin\EditEmployee.cshtml" />
+    <Content Include="Views\Admin\EditMember.cshtml" />
+    <Content Include="Views\Admin\EditProfile.cshtml" />
+    <Content Include="Views\Admin\Employees.cshtml" />
+    <Content Include="Views\Admin\Members.cshtml" />
+    <Content Include="Views\Admin\Profile.cshtml" />
+    <Content Include="Views\Employee\_Layout.cshtml" />
+    <Content Include="Views\Employee\_ViewStart.cshtml" />
+    <Content Include="Views\Admin\_Layout.cshtml" />
+    <Content Include="Views\Admin\_ViewStart.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\ChangePassword.cshtml" />
+    <Content Include="Views\Admin\CompleteProfile.cshtml" />
+    <Content Include="Views\Member\NewBooks.cshtml" />
+    <Content Include="Views\Member\ReadingBooks.cshtml" />
+    <Content Include="Views\Member\ReadingMonth.cshtml" />
+    <Content Include="Views\Member\ReadingYear.cshtml" />
+    <Content Include="Views\Member\BorrowedBooks.cshtml" />
+    <Content Include="Views\Member\BorrowedMonth.cshtml" />
+    <Content Include="Views\Member\BorrowedYear.cshtml" />
+    <Content Include="Views\Member\CurrentBorrowed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

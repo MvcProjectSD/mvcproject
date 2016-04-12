@@ -55,11 +55,14 @@ namespace MVC.Controllers
 
                         case 2:
                             Session["username"] = _objuserloginmodel.UserName;
-                            Session["type"] = "Admin";
 
                             var AdminID = (from data in objentity.Users
                                            where data.User_ID == h.User_ID
                                            select data);
+                            Session["type"] =  AdminID.Select(X => X.employeeType).FirstOrDefault();;
+                            Session["user_id"] = AdminID.Select(X => X.User_ID).FirstOrDefault();
+
+                            
                             foreach (var n in AdminID)
                             {
                                 return RedirectToAction("Profile", "Admin", new { id = n.User_ID });

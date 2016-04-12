@@ -1,0 +1,90 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<title>The Public-Library Website Template | Home :: w3layouts</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans' rel='stylesheet' type='text/css'>
+<link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+@Styles.Render("~/Content/css")
+@Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+<div class="btm_border">
+<div class="h_bg">
+<div class="wrap">
+	<div class="header">
+		<div class="logo">
+			<h1><a href="index.html"><img src="~/images/logo.png" alt=""></a></h1>
+		</div>
+		<div class="social-icons">
+			<ul>
+			     <li><a class="facebook" href="#" target="_blank"> </a></li>
+			     <li><a class="twitter" href="#" target="_blank"></a></li>
+			     <li><a class="googleplus" href="#" target="_blank"></a></li>
+			     <li><a class="pinterest" href="#" target="_blank"></a></li>
+			     <li><a class="dribbble" href="#" target="_blank"></a></li>
+			     <li><a class="vimeo" href="#" target="_blank"></a></li>
+		   </ul>
+
+		    <ul>
+                <li>
+                    @Html.ActionLink("LogOut", "logout", "Admin")
+                </li>
+		    </ul>
+
+		</div>	
+		<div class="clear"></div>
+	</div>
+	<div class='h_btm'>
+		<div class='cssmenu'>
+			<ul>
+                <li class='active'><a href='@Url.Action("Profile", new { id = Session["user_id"].ToString()})'><span> Profile </span></a></li>
+                <li><a href='~/Admin/Employees'><span>Employees</span></a></li>
+                <li><a href='~/Admin/Members'><span>Members</span></a></li>
+                <li class=''><a href='~/Admin/Books'><span>Books</span></a></li>
+                <li class='last'><a href='contact.html'><span>Contact</span></a></li>
+                <div class="clear"></div>
+			 </ul>
+	</div>
+	<div class="search">
+    	<form>
+    		<input type="text" value="">
+    		<input type="submit" value="">
+    	</form>
+	</div>
+	<div class="clear"></div>
+</div>
+</div>
+</div>
+</div>
+
+<!--main-->
+<div class="main_bg">
+<div class="wrap">
+<div class="main">
+	
+					@RenderBody()
+</div>
+</div>
+</div>
+
+<!--footer1-->
+<div class="ftr-bg">
+	<div class="wrap">
+		<div class="footer">
+		<div class="copy">
+			<p class="w3-link">© All Rights Reserved | Design by&nbsp; <a href="http://w3layouts.com/"> W3Layouts</a></p>
+		</div>
+		<div class="clear"></div>	
+	</div>
+	</div>
+</div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+

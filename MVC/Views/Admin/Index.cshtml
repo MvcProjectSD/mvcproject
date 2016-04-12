@@ -1,0 +1,23 @@
+﻿@model  MVC.User
+
+<!--table class="table-bordered"-->
+
+<h1 class="text-center"> <b> Admin Panel </b> </h1>
+<br>
+
+@*<div>
+    Full Name:@(String.Format("{0}{1}",Model.firstname,Model.lastname))
+</div>*@
+
+<a href='@Url.Action("Employees", "Admin")'>Employees
+    <img src='@Url.Content("~/Images/emp.png")' />
+</a>
+
+<!--/table-->
+@*@Html.ActionLink("Edit Profile", "EditProfile", new { id = @Model.User_ID })*@
+@Html.ActionLink("Employees", "Employees")
+@Html.ActionLink("Books Page", "Books")
+@Html.ActionLink("Member", "Members")
+<br />
+
+

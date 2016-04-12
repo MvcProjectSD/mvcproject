@@ -19,7 +19,8 @@ namespace MVC.Controllers
             {
                 return RedirectToAction("SignIn", "Login");
             }
-            return View();
+            User emp = AdminEntity.Users.Find(Session["user_id"]);
+            return View(emp);
         }
 
         public ActionResult Profile(int id)
@@ -29,8 +30,11 @@ namespace MVC.Controllers
                 return RedirectToAction("SignIn", "Login");
             }
 
-            User admin = AdminEntity.Users.Find(id);
-            return View(admin);
+            //User admin = AdminEntity.Users.Find(id);
+            var admin = from m in AdminEntity.Users
+                where m.User_ID == id
+                select m;
+            return View(admin.SingleOrDefault());
         }
 
         public ActionResult EditProfile(int id)
@@ -117,19 +121,47 @@ namespace MVC.Controllers
         }
 
         [HttpPost]
-        public ActionResult CreateEmployee(User emp)
+        public ActionResult CreateEmployee(User emp,Login login)
         {
             if (Session["username"] == null)
             {
                 return RedirectToAction("SignIn", "Login");
             }
-            if (ModelState.IsValid)
+            //if (ModelState.IsValid)
+            //{
+            //    AdminEntity.Users.Add(emp);
+            //    AdminEntity.SaveChanges();
+            //    return RedirectToAction("Employees");
+            //}
+            User usr = new User()
+            { 
+                firstname = emp.firstname,
+                middlename = emp.middlename,
+               lastname = emp.lastname,
+               address = emp.address,
+               birthdate = emp.birthdate,
+               phoneNo = emp.phoneNo,
+               employeeType = 3,
+                hiredate = emp.hiredate,
+                salary = emp.salary
+            };
+            AdminEntity.Users.Add(usr);
+            //AdminEntity.SaveChanges();
+            int userId =AdminEntity.Users.FirstOrDefault(u => u.firstname == emp.firstname & u.middlename == emp.middlename & u.lastname == emp.lastname).User_ID;
+
+            Login log = new Login()
             {
-                AdminEntity.Users.Add(emp);
-                AdminEntity.SaveChanges();
-                return RedirectToAction("Employees");
-            }
-            return View(emp);
+                User_ID = userId,
+                Login_No = 0,
+                Type = 3,
+                UserName = login.UserName,
+                Password = login.Password,
+            };
+
+            AdminEntity.Logins.Add(log);
+            AdminEntity.SaveChanges();
+
+            return RedirectToAction("Employees");
         }
 
         public ActionResult EditEmployee(int? id)
@@ -150,8 +182,73 @@ namespace MVC.Controllers
             return View(user);
         }
 
+        public ActionResult ChangePassword(string error)
+        {
+            string username = Session["username"].ToString();
+            AdminEntity.Logins.FirstOrDefault(U => U.UserName == username).Login_No = 1;
+            return View(error);
+        }
+
         [HttpPost]
-        public ActionResult EditEmployee(User user)
+        public ActionResult ChangePassword(string password, string confirmpassword)
+        {
+            string username = Session["username"].ToString();
+            if (password == confirmpassword)
+            {
+                AdminEntity.Logins.FirstOrDefault(L => L.UserName == username).Password = password;
+
+                AdminEntity.SaveChanges();
+
+                return RedirectToAction("CompleteProfile", new { id = Session["user_id"], type = Session["type"] });
+            }
+
+            else
+            {
+                return View("ChangePassword", "", "Password Doesn't Match");
+            }
+        }
+
+
+        [HttpGet]
+        public ActionResult CompleteProfile(int id, int type)
+        {
+            string username = Session["username"].ToString();
+
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            var users = AdminEntity.Users.First(U => U.User_ID == id & U.employeeType == type);
+
+            var login = AdminEntity.Logins.FirstOrDefault(L => L.User_ID == id & L.Type == type);
+
+            MVC.Models.logg loggs = new Models.logg() { login = login, user = users, image = new Models.ImageToUpload() };
+
+            AdminEntity.Logins.FirstOrDefault(U => U.UserName == username).Login_No = 0;
+            return View(loggs);
+        }
+
+        [HttpPost]
+        public ActionResult CompleteProfile(User user, Login login, Models.ImageToUpload image)
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            AdminEntity.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).firstname = user.firstname;
+            AdminEntity.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).lastname = user.lastname;
+            AdminEntity.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).middlename = user.middlename;
+            AdminEntity.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).birthdate = user.birthdate;
+            AdminEntity.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).address = user.address;
+            AdminEntity.Users.FirstOrDefault(U => U.User_ID == user.User_ID & U.employeeType == user.employeeType).phoneNo = user.phoneNo;
+            AdminEntity.Logins.FirstOrDefault(U => U.User_ID == user.User_ID & U.Type == user.employeeType).Login_No = 1;
+            AdminEntity.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        [HttpPost]
+        public ActionResult EditEmployee(User user)  
         {
             if (Session["username"] == null)
             {
@@ -392,7 +489,9 @@ namespace MVC.Controllers
             }
             if (ModelState.IsValid)
             {
-                member.Member_ID = AdminEntity.Members.Select(m => m.Member_ID).Max() + 1;
+               // member.Member_ID = AdminEntity.Members.Select(m => m.Member_ID).Max() + 1;
+               int max_id = AdminEntity.Members.OrderByDescending(m => m.Member_ID).FirstOrDefault().Member_ID;
+                member.Member_ID = max_id + 1;
                 AdminEntity.Members.Add(member);
                 AdminEntity.SaveChanges();
                 return RedirectToAction("Members");
@@ -401,5 +500,18 @@ namespace MVC.Controllers
             return View(member);
         }
 
+        public ActionResult logout()
+        {
+            if (Session["username"] == null)
+            {
+                return RedirectToAction("SignIn", "Login");
+            }
+
+            Session["username"] = null;
+            Session["type"] = null;
+            Session["user_id"] = null;
+
+            return RedirectToAction("SignIn", "Login");
+        }
     }
 }
